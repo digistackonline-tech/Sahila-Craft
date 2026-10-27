@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sahila Craft - Galeri Tas Rajut & Kerajinan Tangan Pasuruan</title>
+  <meta name="description" content="Galeri tas rajut dan dompet rajut handmade premium Sahila Craft Pasuruan. Pesan langsung via WhatsApp, sistem Pre-Order (PO) DP 50%.">
+  <meta name="theme-color" content="#3D291D">
+  <link rel="icon" type="image/jpeg" href="assets/logos/logo.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400&family=Great+Vibes&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================
+       MOBILE-FIRST DESIGN SYSTEM (SAHILA CRAFT)
+       Base styles are optimized for Mobile Devices (360px - 480px)
+       Progressively scales up for Tablets and Desktops
+    ========================================================== */
+    :root {
+      --terracotta: #BA6448;
+      --terracotta-dark: #984D34;
+      --terracotta-light: #F7EEE9;
+      --espresso: #3D291D;
+      --espresso-dark: #2B1C13;
+      --sand-bg: #FAF7F2;
+      --card-bg: #FFFFFF;
+      --border-color: #EBDED3;
+      --gold-accent: #DDB288;
+      --sage-green: #7D8F76;
+      --sage-light: #EEF3ED;
+      --text-main: #33241C;
+      --text-muted: #726259;
+      --wa-green: #25D366;
+      --wa-dark: #1EBE5D;
+      --bottom-nav-height: 64px;
+      --header-height: 60px;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(61, 41, 29, 0.05);
+      --shadow-md: 0 8px 24px rgba(61, 41, 29, 0.08);
+      --shadow-lg: 0 16px 36px rgba(61, 41, 29, 0.14);
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 15px;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--sand-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: calc(var(--bottom-nav-height) + 16px);
+      touch-action: manipulation;
+    }
+
+    /* TYPOGRAPHY */
+    .font-calligraphy {
+      font-family: 'Allura', cursive;
+    }
+
+    .font-serif {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* MOBILE APP TOP HEADER */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(250, 247, 242, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      height: var(--header-height);
+    }
+
+    .header-container {
+      height: 100%;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-logo-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 1.5px solid var(--terracotta);
+      box-shadow: 0 2px 8px rgba(186, 100, 72, 0.2);
+    }
+
+    .brand-title {
+      font-family: 'Allura', cursive;
+      font-size: 1.85rem;
+      line-height: 0.85;
+      color: var(--espresso);
+    }
+
+    .brand-title span {
+      color: var(--terracotta);
+    }
+
+    .brand-subtitle {
+      font-size: 0.6rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-header-wa-icon {
+      background: var(--wa-green);
+      color: #FFF;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.15rem;
+      text-decoration: none;
+      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.3);
+    }
+
+    .menu-toggle-btn {
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--espresso);
+      padding: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* MOBILE SLIDE-OVER DRAWER MENU */
+    .drawer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 28, 19, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .drawer-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .drawer-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 290px;
+      max-width: 80%;
+      background: #FFF;
+      z-index: 2001;
+      transform: translateX(100%);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      box-shadow: -10px 0 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .drawer-overlay.active .drawer-menu {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
+      padding: 20px 18px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--sand-bg);
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      font-size: 1.3rem;
+      color: var(--espresso);
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .drawer-links {
+      list-style: none;
+      padding: 16px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .drawer-links a {
+      color: var(--espresso);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+
+    .drawer-links a:hover, .drawer-links a:active {
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+    }
+
+    .drawer-footer {
+      padding: 18px;
+      border-top: 1px solid var(--border-color);
+      background: var(--sand-bg);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* MOBILE HERO BANNER */
+    .hero-banner {
+      padding: 24px 16px 20px;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(247, 238, 233, 0.6) 0%, rgba(250, 247, 242, 1) 100%);
+    }
+
+    .hero-badge-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #FFF;
+      color: var(--terracotta);
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 12px;
+    }
+
+    .hero-heading {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 2.1rem;
+      line-height: 1.15;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 10px;
+    }
+
+    .hero-heading span {
+      font-family: 'Allura', cursive;
+      font-size: 2.8rem;
+      color: var(--terracotta);
+      font-weight: 400;
+      display: block;
+      margin-top: -4px;
+    }
+
+    .hero-desc {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      max-width: 380px;
+      margin: 0 auto 18px;
+    }
+
+    .hero-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .btn-cta-primary {
+      background: var(--terracotta);
+      color: #FFF;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 50px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(186, 100, 72, 0.3);
+      flex: 1;
+      max-width: 190px;
+      justify-content: center;
+    }
+
+    .btn-cta-secondary {
+      background: #FFF;
+      border: 1.5px solid var(--border-color);
+      color: var(--espresso);
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      flex: 1;
+      max-width: 160px;
+      text-align: center;
+    }
+
+    /* MOBILE QUICK HIGHLIGHTS (PILLS) */
+    .hero-badges-row {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .mini-badge {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--espresso);
+      background: rgba(255, 255, 255, 0.8);
+      border: 1px solid var(--border-color);
+      padding: 4px 10px;
+      border-radius: 50px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* HORIZONTAL SCROLLABLE CATEGORY FILTER */
+    .filter-section {
+      padding: 10px 16px;
+      position: sticky;
+      top: var(--header-height);
+      z-index: 900;
+      background: rgba(250, 247, 242, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .category-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 0;
+    }
+
+    .category-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-chip {
+      flex-shrink: 0;
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .cat-chip.active {
+      background: var(--terracotta);
+      color: #FFF;
+      border-color: var(--terracotta);
+      box-shadow: 0 3px 10px rgba(186, 100, 72, 0.25);
+    }
+
+    /* PRODUCTS CATALOG (MOBILE FIRST GRID) */
+    .catalog-wrapper {
+      padding: 16px;
+    }
+
+    .section-title-wrap {
+      margin-bottom: 14px;
+    }
+
+    .section-title-wrap h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.7rem;
+      color: var(--espresso);
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    .section-title-wrap p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    /* 2-Column Mobile Grid for Efficient Browsing */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .product-img-box {
+      position: relative;
+      background: #F4EFEA;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+    }
+
+    .product-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .badge-po-tag {
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      background: rgba(43, 28, 19, 0.82);
+      color: #FFF;
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(4px);
+    }
+
+    .badge-category-tag {
+      position: absolute;
+      bottom: 6px;
+      left: 6px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--terracotta);
+      font-size: 0.62rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+    }
+
+    .product-content {
+      padding: 10px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .product-name {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--espresso);
+      line-height: 1.3;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      min-height: 2.2em;
+    }
+
+    .product-size-badge {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .price-container {
+      margin-top: auto;
+      padding-top: 6px;
+      border-top: 1px dashed var(--border-color);
+      margin-bottom: 8px;
+    }
+
+    .price-label {
+      font-size: 0.62rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .price-value {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--terracotta);
+      line-height: 1.1;
+    }
+
+    .dp-pill {
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: #1F924D;
+      background: #EBF8EE;
+      display: inline-block;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-top: 2px;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    .btn-wa-tap {
+      background: var(--wa-green);
+      color: #FFF;
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.25);
+    }
+
+    .btn-view-tap {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      color: var(--espresso);
+      padding: 6px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    /* PO RULES ACCORDION / CARDS */
+    .info-section {
+      padding: 24px 16px;
+      background: #FFF;
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      margin-top: 20px;
+    }
+
+    .info-section h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem;
+      color: var(--espresso);
+      margin-bottom: 4px;
+    }
+
+    .info-section p.sub {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-card {
+      background: var(--sand-bg);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .step-num {
+      width: 28px;
+      height: 28px;
+      background: var(--terracotta);
+      color: #FFF;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-body h4 {
+      font-size: 0.88rem;
+      color: var(--espresso);
+      margin-bottom: 2px;
+    }
+
+    .step-body p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* BANK REKENING MOBILE CARD */
+    .bank-box-mobile {
+      margin-top: 24px;
+      background: linear-gradient(135deg, #3D291D 0%, #22140D 100%);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      color: #FFF;
+    }
+
+    .bank-box-mobile .bank-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .bank-box-mobile .bank-tag strong {
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
+      color: #FFF;
+    }
+
+    .bank-box-mobile .bank-tag span {
+      background: var(--terracotta);
+      color: #FFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 20px;
+    }
+
+    .rekening-num-mobile {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--gold-accent);
+      margin-bottom: 4px;
+      word-break: break-all;
+    }
+
+    .bank-name-holder {
+      font-size: 0.78rem;
+      color: #DCCEC4;
+      margin-bottom: 14px;
+    }
+
+    .btn-copy-mobile {
+      width: 100%;
+      background: var(--gold-accent);
+      color: var(--espresso);
+      border: none;
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    /* LOCATION & ABOUT MOBILE */
+    .about-mobile {
+      padding: 24px 16px;
+    }
+
+    .about-mobile h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.6rem;
+      color: var(--espresso);
+      margin-bottom: 8px;
+    }
+
+    .about-mobile p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    .loc-card-mobile {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-top: 14px;
+    }
+
+    .loc-card-mobile .loc-ico {
+      font-size: 1.3rem;
+      color: var(--terracotta);
+    }
+
+    .loc-card-mobile h5 {
+      font-size: 0.86rem;
+      color: var(--espresso);
+      margin-bottom: 2px;
+    }
+
+    .loc-card-mobile p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .loc-card-mobile a {
+      color: var(--terracotta);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* BOTTOM APP NAVIGATION BAR (TAB BAR) */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: var(--bottom-nav-height);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      z-index: 1000;
+      box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.06);
+    }
+
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.65rem;
+      font-weight: 600;
+      gap: 3px;
+      flex: 1;
+      height: 100%;
+      transition: var(--transition);
+    }
+
+    .nav-tab .tab-icon {
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    .nav-tab.active, .nav-tab:hover {
+      color: var(--terracotta);
+    }
+
+    .nav-tab.tab-wa {
+      color: var(--wa-green);
+    }
+
+    .nav-tab.tab-wa .tab-icon {
+      font-size: 1.45rem;
+    }
+
+    /* MOBILE SLIDE-UP BOTTOM SHEET (PRODUCT DETAIL MODAL) */
+    .bottom-sheet-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 28, 19, 0.65);
+      backdrop-filter: blur(4px);
+      z-index: 2500;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .bottom-sheet-overlay.active {
+      display: flex;
+    }
+
+    .bottom-sheet-box {
+      background: #FFF;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 24px 24px 0 0;
+      overflow: hidden;
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+      animation: slideUpSheet 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes slideUpSheet {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+
+    .sheet-handle {
+      width: 44px;
+      height: 5px;
+      background: #D8CCC4;
+      border-radius: 10px;
+      margin: 10px auto 4px;
+      cursor: pointer;
+    }
+
+    .sheet-scroll-body {
+      overflow-y: auto;
+      padding: 12px 18px 24px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .sheet-img-wrap {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      background: #F4EFEA;
+      margin-bottom: 14px;
+    }
+
+    .sheet-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sheet-cat-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--terracotta);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .sheet-title {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.55rem;
+      color: var(--espresso);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .sheet-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .sheet-price {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--terracotta);
+    }
+
+    .sheet-dp {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #1F924D;
+      background: #EBF8EE;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .sheet-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .sheet-specs-table {
+      background: var(--sand-bg);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.78rem;
+      margin-bottom: 16px;
+    }
+
+    .sheet-specs-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+    }
+
+    .sheet-specs-row:last-child {
+      margin-bottom: 0;
+    }
+
+    .sheet-btn-wa {
+      background: var(--wa-green);
+      color: #FFF;
+      text-decoration: none;
+      padding: 13px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+    }
+
+    /* TOAST NOTIFICATION */
+    .toast-box {
+      position: fixed;
+      bottom: calc(var(--bottom-nav-height) + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(50px);
+      background: var(--espresso-dark);
+      color: #FFF;
+      padding: 10px 18px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .toast-box.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ==========================================================
+       PROGRESSIVE ENHANCEMENT (TABLET & DESKTOP STYLES)
+    ========================================================== */
+    @media (min-width: 640px) {
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .hero-heading {
+        font-size: 2.6rem;
+      }
+      .hero-heading span {
+        font-size: 3.4rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      html {
+        font-size: 16px;
+      }
+      .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      .catalog-wrapper, .info-section, .about-mobile, .hero-banner {
+        max-width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .steps-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      body {
+        padding-bottom: 0;
+      }
+      .bottom-nav {
+        display: none;
+      }
+      .products-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+      }
+      .catalog-wrapper, .info-section, .about-mobile, .hero-banner {
+        max-width: 1200px;
+      }
+      .steps-container {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .menu-toggle-btn {
+        display: none;
+      }
+      .desktop-nav-links {
+        display: flex !important;
+        align-items: center;
+        gap: 24px;
+        list-style: none;
+      }
+      .desktop-nav-links a {
+        text-decoration: none;
+        color: var(--espresso);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+      .desktop-nav-links a:hover {
+        color: var(--terracotta);
+      }
+    }
+
+    .desktop-nav-links {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MOBILE APP HEADER -->
+  <header>
+    <div class="header-container">
+      <a href="#beranda" class="brand-group">
+        <img src="assets/logos/logo.jpg" alt="Sahila Craft Logo" class="brand-logo-img">
+        <div>
+          <div class="brand-title">Sahila <span>Craft</span></div>
+          <div class="brand-subtitle">Handmade Pasuruan</div>
+        </div>
+      </a>
+
+      <!-- Desktop Links (Hidden on Mobile) -->
+      <ul class="desktop-nav-links">
+        <li><a href="#katalog">Galeri Produk</a></li>
+        <li><a href="#alur-po">Sistem PO &amp; DP</a></li>
+        <li><a href="#rekening">Rekening Bank</a></li>
+        <li><a href="#tentang">Lokasi Galeri</a></li>
+      </ul>
+
+      <div class="header-actions">
+        <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20mau%20order%20produk%20rajut" target="_blank" class="btn-header-wa-icon" aria-label="WhatsApp">
+          💬
+        </a>
+        <button class="menu-toggle-btn" onclick="toggleDrawer()" aria-label="Buka Menu">
+          ☰
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE SLIDE DRAWER MENU -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawerOnOverlay(event)">
+    <div class="drawer-menu">
+      <div class="drawer-header">
+        <div class="brand-group">
+          <img src="assets/logos/logo.jpg" alt="Sahila Craft" style="width:34px; height:34px; border-radius:50%; object-fit:cover;">
+          <div style="font-family:'Allura', cursive; font-size:1.6rem; color:var(--espresso);">
+            Sahila <span style="color:var(--terracotta);">Craft</span>
+          </div>
+        </div>
+        <button class="drawer-close" onclick="toggleDrawer()">✕</button>
+      </div>
+
+      <ul class="drawer-links">
+        <li><a href="#beranda" onclick="toggleDrawer()">🏠 Beranda</a></li>
+        <li><a href="#katalog" onclick="toggleDrawer()">👜 Katalog Produk Rajut</a></li>
+        <li><a href="#alur-po" onclick="toggleDrawer()">⏱️ Alur PO &amp; Ketentuan DP</a></li>
+        <li><a href="#rekening" onclick="toggleDrawer()">💳 Rekening Pembayaran BRI</a></li>
+        <li><a href="#tentang" onclick="toggleDrawer()">📍 Alamat &amp; Workshop</a></li>
+        <li>
+          <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20mau%20konsultasi%20custom%20rajut" target="_blank" style="background:#EAF8EE; color:#1F924D;">
+            💬 Hubungi WhatsApp Langsung
+          </a>
+        </li>
+      </ul>
+
+      <div class="drawer-footer">
+        <strong>Workshop Sahila Craft:</strong><br>
+        Desa Jajar Lor, Kec. Gondang Wetan,<br>
+        Kabupaten Pasuruan, Jawa Timur<br>
+        WA: 0857-0778-7900
+      </div>
+    </div>
+  </div>
+
+  <!-- HERO BANNER -->
+  <section class="hero-banner" id="beranda">
+    <div class="hero-badge-tag">🧶 100% Buatan Tangan Pasuruan</div>
+    <h1 class="hero-heading">
+      Tas &amp; Dompet Rajut
+      <span>Sahila Craft</span>
+    </h1>
+    <p class="hero-desc">
+      Koleksi kerajinan rajut berkualitas premium dengan jahitan rapi, rapat, dan kuat. Bisa custom warna &amp; model impian Anda.
+    </p>
+
+    <div class="hero-action-row">
+      <a href="#katalog" class="btn-cta-primary">🛍️ Lihat Galeri</a>
+      <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20ingin%20tanya%20rajut%20custom" target="_blank" class="btn-cta-secondary">Chat Admin</a>
+    </div>
+
+    <div class="hero-badges-row">
+      <span class="mini-badge">✓ Cukup DP 50%</span>
+      <span class="mini-badge">✓ PO Maksimal 1 Bulan</span>
+      <span class="mini-badge">✓ Kirim Seluruh Indonesia</span>
+    </div>
+  </section>
+
+  <!-- HORIZONTAL CATEGORY FILTER CHIPS -->
+  <div class="filter-section">
+    <div class="category-scroll">
+      <button class="cat-chip active" onclick="filterCategory('all', this)">✨ Semua (10)</button>
+      <button class="cat-chip" onclick="filterCategory('tas', this)">👜 Tas Rajut (5)</button>
+      <button class="cat-chip" onclick="filterCategory('dompet', this)">👝 Dompet &amp; Pouch (5)</button>
+    </div>
+  </div>
+
+  <!-- PRODUCTS CATALOG (MOBILE FIRST GRID) -->
+  <main class="catalog-wrapper" id="katalog">
+    <div class="section-title-wrap">
+      <h2>Katalog Pilihan</h2>
+      <p>Klik tombol WA untuk langsung pesan dengan draf otomatis</p>
+    </div>
+
+    <div class="products-grid" id="productsGrid">
+      <!-- Injected by JavaScript -->
+    </div>
+  </main>
+
+  <!-- PO & DP POLICIES -->
+  <section class="info-section" id="alur-po">
+    <h3>Sistem Pre-Order (PO) &amp; DP</h3>
+    <p class="sub">Panduan mudah pemesanan karya rajut buatan tangan di Sahila Craft</p>
+
+    <div class="steps-container">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h4>Pilih Produk</h4>
+          <p>Tentukan model dari galeri atau request warna custom via chat WhatsApp.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h4>Bayar DP 50%</h4>
+          <p>Mulai pengerjaan cukup transfer uang muka separuh dari harga ke rekening resmi BRI.</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h4>Pengerjaan PO</h4>
+          <p>Waktu pengerjaan maksimal 1 bulan (bisa lebih cepat tergantung antrean rajut).</p>
+        </div>
+      </div>
+
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h4>Pelunasan &amp; Kirim</h4>
+          <p>Foto hasil jadi dikirimkan, lunasi sisa 50%, barang langsung dikirim ke alamat Anda.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK REKENING MOBILE CARD -->
+    <div class="bank-box-mobile" id="rekening">
+      <div class="bank-tag">
+        <strong>BANK BRI</strong>
+        <span>REKENING RESMI</span>
+      </div>
+      <div class="rekening-num-mobile" id="rekNumText">647401030008538</div>
+      <div class="bank-name-holder">Atas Nama: <strong>MUJIDATUR ROHMAH</strong></div>
+      <button class="btn-copy-mobile" onclick="copyRekening()">
+        📋 Salin Nomor Rekening
+      </button>
+    </div>
+  </section>
+
+  <!-- ABOUT & LOCATION MOBILE -->
+  <section class="about-mobile" id="tentang">
+    <h3>Tentang Sahila Craft</h3>
+    <p>
+      Usaha kerajinan tangan tas dan dompet rajut lokal yang berpusat di Pasuruan, Jawa Timur. Setiap produk dirajut teliti dengan benang berkualitas, menghasilkan tekstur rajutan yang rapat, awet, dan bernilai seni tinggi.
+    </p>
+
+    <div class="loc-card-mobile">
+      <div class="loc-ico">📍</div>
+      <div>
+        <h5>Rumah Produksi &amp; Galeri:</h5>
+        <p>Desa Jajar Lor, Kecamatan Gondang Wetan, Kabupaten Pasuruan, Jawa Timur</p>
+        <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20mau%20tanya%20alamat%20workshop" target="_blank">
+          Hubungi untuk Kunjungan / Pesanan →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOBILE BOTTOM APP NAVIGATION (TAB BAR) -->
+  <nav class="bottom-nav">
+    <a href="#beranda" class="nav-tab active">
+      <span class="tab-icon">🏠</span>
+      <span>Beranda</span>
+    </a>
+    <a href="#katalog" class="nav-tab">
+      <span class="tab-icon">👜</span>
+      <span>Katalog</span>
+    </a>
+    <a href="#alur-po" class="nav-tab">
+      <span class="tab-icon">⏱️</span>
+      <span>Alur PO</span>
+    </a>
+    <a href="#rekening" class="nav-tab">
+      <span class="tab-icon">💳</span>
+      <span>Rekening</span>
+    </a>
+    <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20mau%20order" target="_blank" class="nav-tab tab-wa">
+      <span class="tab-icon">💬</span>
+      <span>Chat WA</span>
+    </a>
+  </nav>
+
+  <!-- MOBILE BOTTOM SHEET MODAL DETAIL -->
+  <div class="bottom-sheet-overlay" id="sheetOverlay" onclick="closeSheetOnOverlay(event)">
+    <div class="bottom-sheet-box">
+      <div class="sheet-handle" onclick="closeSheet()"></div>
+      <div class="sheet-scroll-body">
+        <div class="sheet-img-wrap">
+          <img id="sheetImg" src="" alt="Detail Produk">
+        </div>
+        <div class="sheet-cat-label" id="sheetCategory">KATEGORI</div>
+        <h3 class="sheet-title" id="sheetTitle">Nama Produk</h3>
+
+        <div class="sheet-price-row">
+          <div class="sheet-price" id="sheetPrice">Rp 0</div>
+          <div class="sheet-dp" id="sheetDP">DP 50%: Rp 0</div>
+        </div>
+
+        <p class="sheet-desc" id="sheetDesc">Deskripsi produk...</p>
+
+        <div class="sheet-specs-table">
+          <div class="sheet-specs-row">
+            <span>Dimensi Ukuran:</span>
+            <strong id="sheetSize">-</strong>
+          </div>
+          <div class="sheet-specs-row">
+            <span>Motif Rajut:</span>
+            <strong id="sheetMotif">-</strong>
+          </div>
+          <div class="sheet-specs-row">
+            <span>Waktu PO:</span>
+            <strong>Maksimal 1 Bulan</strong>
+          </div>
+        </div>
+
+        <div style="font-size:0.75rem; color:var(--terracotta); background:var(--terracotta-light); padding:7px 10px; border-radius:6px; margin-bottom:14px;">
+          💡 <em>Bisa request warna benang lain sesuai keinginan saat chat WA!</em>
+        </div>
+
+        <a href="#" id="sheetWaBtn" target="_blank" class="sheet-btn-wa">
+          💬 Pesan Produk Ini via WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast-box" id="toastNotice">Nomor rekening berhasil disalin!</div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    const WA_PHONE = "6285707787900";
+
+    const productsDatabase = [
+      {
+        id: 1,
+        title: "Dompet Rajut Motif Crocodile",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Crocodile / Sisik Buaya",
+        size: "12 x 8 x 3 cm (Resleting 12 cm)",
+        price: 60000,
+        image: "assets/products/dompet-crocodile-sisik.jpg",
+        desc: "Dompet rajut motif sisik buaya bernuansa cokelat karamel dengan aksen baris krem. Dilengkapi tali pegangan tangan (wristlet strap) dan resleting logam halus."
+      },
+      {
+        id: 2,
+        title: "Dompet Rajut Motif Prada Hijau",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Prada Stitch",
+        size: "12 x 3 x 8 cm (Resleting 12 cm)",
+        price: 60000,
+        image: "assets/products/dompet-prada-hijau.jpg",
+        desc: "Pouch rajut motif Prada dalam balutan warna hijau sage / olive yang estetik dan segar, dilengkapi label kulit handmade mewah."
+      },
+      {
+        id: 3,
+        title: "Tas Rajut Tote Motif Crocodile",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Crocodile Stitch 2 Tingkat",
+        size: "30 x 25 x 10 cm",
+        price: 400000,
+        image: "assets/products/tas-tote-crocodile.jpg",
+        desc: "Tas jinjing rajut berkapasitas lega dengan gradasi warna cokelat tua dan mocca, ring emas kuat, dan tali handle tebal anti-melar."
+      },
+      {
+        id: 4,
+        title: "Dompet Rajut Motif Bunga Tanjung",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Bunga Tanjung Maroon",
+        size: "20 x 10 x 4 cm",
+        price: 100000,
+        image: "assets/products/dompet-bunga-tanjung.jpg",
+        desc: "Dompet rajut panjang warna merah marun anggun dengan hiasan rajutan bunga tanjung putih krem di bagian tengah."
+      },
+      {
+        id: 5,
+        title: "Dompet Rajut Motif Bunga Terracotta",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Bunga Popcorn Timbul",
+        size: "17 x 4 x 11 cm",
+        price: 100000,
+        image: "assets/products/dompet-motif-bunga.jpg",
+        desc: "Pouch rajut warna terracotta hangat dengan bintik motif bunga rajut krem yang manis, dilengkapi ring resleting perak."
+      },
+      {
+        id: 6,
+        title: "Tas Selempang Kotak 3 Dimensi",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Kotak 3D Waffle / Bubble",
+        size: "25 x 8 x 18 cm",
+        price: 280000,
+        image: "assets/products/tas-selempang-kotak-3d.jpg",
+        desc: "Tas rajut selempang warna hitam pekat bergaya modern dengan rajutan timbul kotak 3 dimensi dan aksen kaitan rantai emas."
+      },
+      {
+        id: 7,
+        title: "Dompet Rajut Motif Kipas Mini",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Kipas Shell Stitch",
+        size: "10 x 3 x 8 cm",
+        price: 50000,
+        image: "assets/products/dompet-motif-kipas.jpg",
+        desc: "Pouch rajut mungil motif kipas paduan merah marun dan krem natural. Sangat praktis untuk koin, kartu, dan lipstik."
+      },
+      {
+        id: 8,
+        title: "Tas Rajut HP Motif Bunga Lilac",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Bunga Timbul Pastel",
+        size: "19 x 7 x 4 cm",
+        price: 250000,
+        image: "assets/products/tas-hp-motif-bunga.jpg",
+        desc: "Tas sling bag khusus smartphone warna lilac ungu pastel yang feminin dengan motif bintik bunga krem dan tali selempang nyaman."
+      },
+      {
+        id: 9,
+        title: "Tas Ransel Rajut Motif Pita Mewah",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Pita Raksasa & Kristal",
+        size: "26 x 10 x 40 cm",
+        price: 950000,
+        image: "assets/products/tas-ransel-motif-pita.jpg",
+        desc: "Ransel rajut istimewa warna cokelat kopi dengan ornamen pita rajut jingga tembaga bertabur kristal permata berkilau."
+      },
+      {
+        id: 10,
+        title: "Tas Rajut Jinjing Klasik (Tote)",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Garis Jalur Vertikal",
+        size: "35 x 20 x 10 cm",
+        price: 450000,
+        image: "assets/products/tas-jinjing-tote-beige.jpg",
+        desc: "Tote bag rajut klasik berwarna krem beige natural dengan tekstur jalur vertikal berkapasitas sangat luas dan kuat."
+      }
+    ];
+
+    function toRupiah(num) {
+      return "Rp " + num.toLocaleString("id-ID");
+    }
+
+    // Render Products Grid
+    function renderCatalog(filter = "all") {
+      const grid = document.getElementById("productsGrid");
+      grid.innerHTML = "";
+
+      const items = filter === "all" 
+        ? productsDatabase 
+        : productsDatabase.filter(p => p.category === filter);
+
+      items.forEach(p => {
+        const dp = p.price * 0.5;
+        const waMsg = encodeURIComponent(
+          `Halo Sahila Craft, saya mau order produk rajut:\n\n` +
+          `• Produk: ${p.title}\n` +
+          `• Ukuran: ${p.size}\n` +
+          `• Harga: ${toRupiah(p.price)}\n` +
+          `• DP 50%: ${toRupiah(dp)}\n` +
+          `• Sistem PO: Maksimal 1 Bulan\n\n` +
+          `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MUJIDATUR ROHMAH. Mohon diproses ya kak!`
+        );
+
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+          <div class="product-img-box" onclick="showSheet(${p.id})">
+            <img src="${p.image}" alt="${p.title}" loading="lazy">
+            <span class="badge-po-tag">PO 1 Bln</span>
+            <span class="badge-category-tag">${p.categoryLabel}</span>
+          </div>
+
+          <div class="product-content">
+            <h3 class="product-name" onclick="showSheet(${p.id})">${p.title}</h3>
+            <div class="product-size-badge">📐 ${p.size}</div>
+
+            <div class="price-container">
+              <div class="price-label">Harga Produk</div>
+              <div class="price-value">${toRupiah(p.price)}</div>
+              <div class="dp-pill">DP: ${toRupiah(dp)}</div>
+            </div>
+
+            <div class="card-actions">
+              <a href="https://wa.me/${WA_PHONE}?text=${waMsg}" target="_blank" class="btn-wa-tap">
+                💬 Pesan WA
+              </a>
+              <button class="btn-view-tap" onclick="showSheet(${p.id})">Lihat Detail</button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Filter Chips
+    function filterCategory(cat, btn) {
+      document.querySelectorAll(".cat-chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      renderCatalog(cat);
+    }
+
+    // Bottom Sheet (Mobile Modal)
+    function showSheet(id) {
+      const p = productsDatabase.find(item => item.id === id);
+      if (!p) return;
+
+      const dp = p.price * 0.5;
+      document.getElementById("sheetImg").src = p.image;
+      document.getElementById("sheetCategory").textContent = p.categoryLabel;
+      document.getElementById("sheetTitle").textContent = p.title;
+      document.getElementById("sheetPrice").textContent = toRupiah(p.price);
+      document.getElementById("sheetDP").textContent = `DP 50%: ${toRupiah(dp)}`;
+      document.getElementById("sheetDesc").textContent = p.desc;
+      document.getElementById("sheetSize").textContent = p.size;
+      document.getElementById("sheetMotif").textContent = p.motif;
+
+      const waMsg = encodeURIComponent(
+        `Halo Sahila Craft, saya mau order produk rajut:\n\n` +
+        `• Produk: ${p.title}\n` +
+        `• Ukuran: ${p.size}\n` +
+        `• Harga: ${toRupiah(p.price)} (DP: ${toRupiah(dp)})\n` +
+        `• Waktu PO: Paling lama 1 bulan\n\n` +
+        `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MUJIDATUR ROHMAH. Mohon diproses ya kak!`
+      );
+      document.getElementById("sheetWaBtn").href = `https://wa.me/${WA_PHONE}?text=${waMsg}`;
+
+      document.getElementById("sheetOverlay").classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSheet() {
+      document.getElementById("sheetOverlay").classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    function closeSheetOnOverlay(e) {
+      if (e.target.id === "sheetOverlay") {
+        closeSheet();
+      }
+    }
+
+    // Drawer Menu Toggle
+    function toggleDrawer() {
+      const overlay = document.getElementById("drawerOverlay");
+      overlay.classList.toggle("active");
+    }
+
+    function closeDrawerOnOverlay(e) {
+      if (e.target.id === "drawerOverlay") {
+        toggleDrawer();
+      }
+    }
+
+    // Copy Rekening with Toast
+    function copyRekening() {
+      const rek = document.getElementById("rekNumText").innerText.trim();
+      navigator.clipboard.writeText(rek).then(() => {
+        showToastNotice("✓ Rekening BRI a.n. MUJIDATUR ROHMAH berhasil disalin!");
+      }).catch(() => {
+        showToastNotice("Rek BRI: 647401030008538 a.n. MUJIDATUR ROHMAH");
+      });
+    }
+
+    function showToastNotice(msg) {
+      const toast = document.getElementById("toastNotice");
+      toast.textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCatalog("all");
+    });
+  </script>
+</body>
+</html>

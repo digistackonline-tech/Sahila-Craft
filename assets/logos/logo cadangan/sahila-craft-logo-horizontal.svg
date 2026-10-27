@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 240" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&amp;family=Allura&amp;family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap');
+
+      .h-calligraphy-main {
+        font-family: 'Great Vibes', 'Alex Brush', cursive;
+      }
+      .h-calligraphy-sub {
+        font-family: 'Alex Brush', 'Allura', cursive;
+      }
+      .h-sans {
+        font-family: 'Montserrat', sans-serif;
+      }
+    </style>
+
+    <linearGradient id="warmBrown" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#C55338" />
+      <stop offset="100%" stop-color="#9C3A22" />
+    </linearGradient>
+    <linearGradient id="goldAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DDB288" />
+      <stop offset="100%" stop-color="#BA8454" />
+    </linearGradient>
+    <filter id="badgeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#552C16" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Left Icon Emblem (Yarn Ball + Crochet Hook + Bag Silhouette - Dipertahankan) -->
+  <g transform="translate(130, 120)">
+    <!-- Subtle background disc -->
+    <circle cx="0" cy="0" r="88" fill="#FBF8F3" stroke="#E6DACD" stroke-width="2" filter="url(#badgeShadow)"/>
+    <circle cx="0" cy="0" r="78" fill="none" stroke="#DDB288" stroke-width="1.2" stroke-dasharray="4 4" />
+
+    <!-- Crochet Hook (Hakpen) -->
+    <g transform="rotate(-40 0 0)">
+      <path d="M -70 -6 L 60 -6 C 72 -6, 78 -2, 75 2 C 72 5, 68 0, 60 0 L -70 0 Z" fill="url(#goldAccent)" />
+      <rect x="-65" y="-9" width="45" height="10" rx="5" fill="#C55338" />
+    </g>
+
+    <!-- Stylized Yarn Ball -->
+    <g transform="translate(0, 0)">
+      <circle cx="0" cy="0" r="42" fill="#E8B4A2" />
+      <path d="M -32 -16 C -16 -38, 16 -38, 32 -16" stroke="#BA472D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M -38 -4 C -20 -24, 20 -24, 38 -4" stroke="#BA472D" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M -40 12 C -20 -8, 20 -8, 40 12" stroke="#8F321B" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M -34 26 C -14 10, 18 10, 34 26" stroke="#BA472D" stroke-width="3" fill="none" stroke-linecap="round"/>
+      
+      <!-- Overlapping Yarn Wraps -->
+      <path d="M -16 -36 C 8 -16, 20 16, 8 38" stroke="#FFF7F2" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <path d="M -28 -24 C -4 -8, 8 24, -4 38" stroke="#FCE2D8" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+      <!-- Thread swirl exiting into an aesthetic loop -->
+      <path d="M 18 36 C 35 55, 60 55, 55 72 C 50 85, 30 75, 24 86" stroke="#C55338" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    </g>
+
+    <!-- Olive Botanical Accent -->
+    <g stroke="#7D8F76" stroke-width="1.8" fill="#9FB098" stroke-linecap="round">
+      <path d="M -50 35 C -65 25, -60 10, -45 5" fill="none"/>
+      <path d="M -60 22 C -70 18, -68 12, -58 15 Z" />
+      <path d="M -54 10 C -62 4, -56 -2, -50 4 Z" />
+    </g>
+  </g>
+
+  <!-- Vertical Divider Line -->
+  <line x1="250" y1="45" x2="250" y2="195" stroke="#E2D4C3" stroke-width="1.5" stroke-linecap="round" />
+
+  <!-- Right Typography Section with Full Calligraphy for Sahila & Craft -->
+  <g transform="translate(285, 0)">
+    <!-- Small Category Header -->
+    <text x="0" y="60" 
+          class="h-sans" 
+          font-size="11" 
+          font-weight="600" 
+          letter-spacing="5" 
+          fill="#BA8454">
+      ARTISAN CROCHET &amp; HANDICRAFT
+    </text>
+
+    <!-- Aesthetic Script "Sahila" + Calligraphy "Craft" -->
+    <g transform="translate(0, 130)">
+      <!-- Sahila in Calligraphy -->
+      <text x="-5" y="0" 
+            class="h-calligraphy-main" 
+            font-size="82" 
+            fill="#312219">
+        Sahila
+      </text>
+      
+      <!-- Craft in Calligraphy -->
+      <text x="215" y="4" 
+            class="h-calligraphy-sub" 
+            font-size="74" 
+            fill="#C55338">
+        Craft
+      </text>
+    </g>
+
+    <!-- Bottom Description in Aesthetic Sans -->
+    <g transform="translate(2, 178)">
+      <text x="0" y="0" 
+            class="h-sans" 
+            font-size="13.5" 
+            font-weight="400" 
+            letter-spacing="2.5" 
+            fill="#6E5A4E">
+        Tas Rajut Premium &amp; Aneka Kerajinan Tangan
+      </text>
+      <!-- Small Aesthetic Leaf Accent -->
+      <path d="M 460 -5 C 470 -12, 480 -8, 475 2 C 468 0, 465 -3, 460 -5 Z" fill="#8B9D83" />
+    </g>
+  </g>
+</svg>

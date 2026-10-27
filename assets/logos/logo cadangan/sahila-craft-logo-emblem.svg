@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&amp;family=Allura&amp;family=Great+Vibes&amp;family=Montserrat:wght@300;400;500;600&amp;display=swap');
+
+      .font-calligraphy-sahila {
+        font-family: 'Great Vibes', 'Alex Brush', cursive;
+      }
+      .font-calligraphy-craft {
+        font-family: 'Alex Brush', 'Allura', cursive;
+      }
+      .font-modern-sans {
+        font-family: 'Montserrat', sans-serif;
+      }
+    </style>
+
+    <linearGradient id="warmBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFDF9" />
+      <stop offset="100%" stop-color="#F8EFE4" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#DDB288" />
+      <stop offset="100%" stop-color="#BA8454" />
+    </linearGradient>
+    <filter id="softShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#552C16" flood-opacity="0.08"/>
+    </filter>
+  </defs>
+
+  <!-- Background Circle Badge -->
+  <circle cx="250" cy="250" r="236" fill="url(#warmBg)" stroke="#EAD8C7" stroke-width="3" filter="url(#softShadow)" />
+  <circle cx="250" cy="250" r="220" fill="none" stroke="#DDB288" stroke-width="1.2" stroke-dasharray="5 5" />
+
+  <!-- Botanical Sage Leaves Wreath (Dipertahankan) -->
+  <g stroke="#8B9D83" stroke-width="2" fill="none" stroke-linecap="round">
+    <!-- Left Branch -->
+    <path d="M 125 260 C 110 225, 115 170, 145 130" />
+    <path d="M 118 235 C 102 230, 102 220, 114 223" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 120 200 C 104 190, 111 180, 124 190" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 130 162 C 117 148, 127 138, 137 152" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 145 130 C 140 115, 153 115, 149 128" fill="#A3B899" fill-opacity="0.55"/>
+
+    <!-- Right Branch -->
+    <path d="M 375 260 C 390 225, 385 170, 355 130" />
+    <path d="M 382 235 C 398 230, 398 220, 386 223" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 380 200 C 396 190, 389 180, 376 190" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 370 162 C 383 148, 373 138, 363 152" fill="#A3B899" fill-opacity="0.55"/>
+    <path d="M 355 130 C 360 115, 347 115, 351 128" fill="#A3B899" fill-opacity="0.55"/>
+  </g>
+
+  <!-- Central Crochet Elements (Dipertahankan) -->
+  <g id="illustration" transform="translate(0, -32)">
+    <!-- Crochet Hook (Hakpen) -->
+    <g transform="rotate(32 250 185)">
+      <path d="M 145 185 L 325 185 C 338 185, 348 181, 345 177 C 343 173, 335 179, 328 179 L 145 179 Z" fill="url(#goldGrad)" />
+      <rect x="135" y="176" width="80" height="11" rx="5.5" fill="#C55338" opacity="0.9"/>
+      <circle cx="145" cy="181.5" r="2" fill="#FFFDF9" />
+    </g>
+
+    <!-- Yarn Ball -->
+    <g transform="translate(250, 185)">
+      <circle cx="0" cy="0" r="46" fill="#E8B4A2" />
+      <path d="M -36 -18 C -18 -44, 18 -44, 36 -18" stroke="#C55338" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M -44 -4 C -22 -26, 22 -26, 44 -4" stroke="#C55338" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M -46 14 C -22 -8, 22 -8, 46 14" stroke="#9C3A22" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M -38 30 C -16 10, 20 10, 38 30" stroke="#C55338" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      
+      <!-- Overlapping threads -->
+      <path d="M -18 -40 C 9 -18, 22 18, 9 44" stroke="#F4D3C6" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+      <path d="M -32 -26 C -4 -8, 9 28, -4 44" stroke="#FFFDF9" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.9"/>
+      
+      <!-- Thread swirling down into an aesthetic loop -->
+      <path d="M 25 38 C 42 60, 72 65, 68 85 C 62 108, 36 90, 26 105 C 18 118, 40 128, 48 122" stroke="#C55338" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <!-- Soft stars -->
+      <path d="M -42 -32 Q -38 -32 -38 -36 Q -38 -32 -34 -32 Q -38 -32 -38 -28 Q -38 -32 -42 -32 Z" fill="#DDB288" />
+      <path d="M 40 -34 Q 43 -34 43 -37 Q 43 -34 46 -34 Q 43 -34 43 -31 Q 43 -34 40 -34 Z" fill="#DDB288" />
+    </g>
+  </g>
+
+  <!-- AESTHETIC CALLIGRAPHY (Sahila & Craft Keduanya Kaligrafi) -->
+  <g transform="translate(250, 305)">
+    <!-- Sahila in Calligraphy -->
+    <text x="0" y="0" 
+          text-anchor="middle" 
+          class="font-calligraphy-sahila" 
+          font-size="76" 
+          font-weight="400" 
+          fill="#3D291D">
+      Sahila
+    </text>
+    
+    <!-- Craft in Calligraphy -->
+    <text x="0" y="52" 
+          text-anchor="middle" 
+          class="font-calligraphy-craft" 
+          font-size="52" 
+          font-weight="400" 
+          fill="#C55338">
+      Craft
+    </text>
+  </g>
+
+  <!-- Elegant Flourish Swash Line -->
+  <g transform="translate(145, 385)">
+    <path d="M 0 0 C 35 -4, 60 4, 85 0" stroke="#DDB288" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <circle cx="105" cy="0" r="3" fill="#C55338" />
+    <path d="M 125 0 C 150 4, 175 -4, 210 0" stroke="#DDB288" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- Tagline in Clean Sans -->
+  <text x="250" y="415" 
+        text-anchor="middle" 
+        class="font-modern-sans" 
+        font-size="10.5" 
+        font-weight="600" 
+        letter-spacing="4" 
+        fill="#66564E">
+    TAS RAJUT &amp; KERAJINAN TANGAN
+  </text>
+  
+  <text x="250" y="435" 
+        text-anchor="middle" 
+        class="font-calligraphy-craft" 
+        font-size="24" 
+        fill="#A68974">
+    Handmade with love
+  </text>
+</svg>
