@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "title": "Dompet Rajut Motif Crocodile",
+    "category": "dompet",
+    "categoryLabel": "Dompet Rajut",
+    "motif": "Crocodile / Sisik Buaya",
+    "size": "12 x 8 x 3 cm (Resleting 12 cm)",
+    "price": 60000,
+    "image": "assets/products/dompet-crocodile-sisik.jpg",
+    "desc": "Dompet rajut motif sisik buaya bernuansa cokelat karamel dengan aksen baris krem. Dilengkapi tali pegangan tangan (wristlet strap) dan resleting logam halus."
+  },
+  {
+    "id": 2,
+    "title": "Dompet Rajut Motif Prada Hijau",
+    "category": "dompet",
+    "categoryLabel": "Dompet Rajut",
+    "motif": "Prada Stitch",
+    "size": "12 x 3 x 8 cm (Resleting 12 cm)",
+    "price": 60000,
+    "image": "assets/products/dompet-prada-hijau.jpg",
+    "desc": "Pouch rajut motif Prada dalam balutan warna hijau sage / olive yang estetik dan segar, dilengkapi label kulit handmade mewah."
+  },
+  {
+    "id": 3,
+    "title": "Tas Rajut Tote Motif Crocodile",
+    "category": "tas",
+    "categoryLabel": "Tas Rajut",
+    "motif": "Crocodile Stitch 2 Tingkat",
+    "size": "30 x 25 x 10 cm",
+    "price": 400000,
+    "image": "assets/products/tas-tote-crocodile.jpg",
+    "desc": "Tas jinjing rajut berkapasitas lega dengan gradasi warna cokelat tua dan mocca, ring emas kuat, dan tali handle tebal anti-melar."
+  },
+  {
+    "id": 4,
+    "title": "Dompet Rajut Motif Bunga Tanjung",
+    "category": "dompet",
+    "categoryLabel": "Dompet Rajut",
+    "motif": "Bunga Tanjung Maroon",
+    "size": "20 x 10 x 4 cm",
+    "price": 100000,
+    "image": "assets/products/dompet-bunga-tanjung.jpg",
+    "desc": "Dompet rajut panjang warna merah marun anggun dengan hiasan rajutan bunga tanjung putih krem di bagian tengah."
+  },
+  {
+    "id": 5,
+    "title": "Dompet Rajut Motif Bunga Terracotta",
+    "category": "dompet",
+    "categoryLabel": "Dompet Rajut",
+    "motif": "Bunga Popcorn Timbul",
+    "size": "17 x 4 x 11 cm",
+    "price": 100000,
+    "image": "assets/products/dompet-motif-bunga.jpg",
+    "desc": "Pouch rajut warna terracotta hangat dengan bintik motif bunga rajut krem yang manis, dilengkapi ring resleting perak."
+  },
+  {
+    "id": 6,
+    "title": "Tas Selempang Kotak 3 Dimensi",
+    "category": "tas",
+    "categoryLabel": "Tas Rajut",
+    "motif": "Kotak 3D Waffle / Bubble",
+    "size": "25 x 8 x 18 cm",
+    "price": 280000,
+    "image": "assets/products/tas-selempang-kotak-3d.jpg",
+    "desc": "Tas rajut selempang warna hitam pekat bergaya modern dengan rajutan timbul kotak 3 dimensi dan aksen kaitan rantai emas."
+  },
+  {
+    "id": 7,
+    "title": "Dompet Rajut Motif Kipas Mini",
+    "category": "dompet",
+    "categoryLabel": "Dompet Rajut",
+    "motif": "Kipas Shell Stitch",
+    "size": "10 x 3 x 8 cm",
+    "price": 50000,
+    "image": "assets/products/dompet-motif-kipas.jpg",
+    "desc": "Pouch rajut mungil motif kipas paduan merah marun dan krem natural. Sangat praktis untuk koin, kartu, dan lipstik."
+  },
+  {
+    "id": 8,
+    "title": "Tas Rajut HP Motif Bunga Lilac",
+    "category": "tas",
+    "categoryLabel": "Tas Rajut",
+    "motif": "Bunga Timbul Pastel",
+    "size": "19 x 7 x 4 cm",
+    "price": 250000,
+    "image": "assets/products/tas-hp-motif-bunga.jpg",
+    "desc": "Tas sling bag khusus smartphone warna lilac ungu pastel yang feminin dengan motif bintik bunga krem dan tali selempang nyaman."
+  },
+  {
+    "id": 9,
+    "title": "Tas Ransel Rajut Motif Pita Mewah",
+    "category": "tas",
+    "categoryLabel": "Tas Rajut",
+    "motif": "Pita Raksasa & Kristal",
+    "size": "26 x 10 x 40 cm",
+    "price": 950000,
+    "image": "assets/products/tas-ransel-motif-pita.jpg",
+    "desc": "Ransel rajut istimewa warna cokelat kopi dengan ornamen pita rajut jingga tembaga bertabur kristal permata berkilau."
+  },
+  {
+    "id": 10,
+    "title": "Tas Rajut Jinjing Klasik (Tote)",
+    "category": "tas",
+    "categoryLabel": "Tas Rajut",
+    "motif": "Garis Jalur Vertikal",
+    "size": "35 x 20 x 10 cm",
+    "price": 450000,
+    "image": "assets/products/tas-jinjing-tote-beige.jpg",
+    "desc": "Tote bag rajut klasik berwarna krem beige natural dengan tekstur jalur vertikal berkapasitas sangat luas dan kuat."
+  }
+]
