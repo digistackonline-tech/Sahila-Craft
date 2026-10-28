@@ -6,6 +6,9 @@
   <title>Sahila Craft - Galeri Tas Rajut & Kerajinan Tangan Pasuruan</title>
   <meta name="description" content="Galeri tas rajut dan dompet rajut handmade premium Sahila Craft Pasuruan. Pesan langsung via WhatsApp, sistem Pre-Order (PO) DP 50%.">
   <meta name="theme-color" content="#3D291D">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
   <link rel="icon" type="image/jpeg" href="assets/logos/logo.jpg">
 
   <!-- Google Fonts -->
@@ -1172,9 +1175,9 @@
   <!-- HORIZONTAL CATEGORY FILTER CHIPS -->
   <div class="filter-section">
     <div class="category-scroll">
-      <button class="cat-chip active" onclick="filterCategory('all', this)">✨ Semua (10)</button>
-      <button class="cat-chip" onclick="filterCategory('tas', this)">👜 Tas Rajut (5)</button>
-      <button class="cat-chip" onclick="filterCategory('dompet', this)">👝 Dompet &amp; Pouch (5)</button>
+      <button class="cat-chip active" onclick="filterCategory('all', this)">✨ Semua (<span id="countAllChip">13</span>)</button>
+      <button class="cat-chip" onclick="filterCategory('tas', this)">👜 Tas Rajut (<span id="countTasChip">6</span>)</button>
+      <button class="cat-chip" onclick="filterCategory('dompet', this)">👝 Dompet &amp; Pouch (<span id="countDompetChip">7</span>)</button>
     </div>
   </div>
 
@@ -1604,32 +1607,45 @@
       }, 3000);
     }
 
+    function updateChipCounters() {
+      const total = productsDatabase.length;
+      const tas = productsDatabase.filter(p => p.category === 'tas').length;
+      const dompet = productsDatabase.filter(p => p.category === 'dompet').length;
+      const cAll = document.getElementById('countAllChip');
+      const cTas = document.getElementById('countTasChip');
+      const cDom = document.getElementById('countDompetChip');
+      if (cAll) cAll.textContent = total;
+      if (cTas) cTas.textContent = tas;
+      if (cDom) cDom.textContent = dompet;
+    }
+
     // Initialize & Dynamic Load
     async function initCatalog() {
-      // 1. Check local draft
-      const local = localStorage.getItem("sahila_custom_products");
-      if (local) {
-        try {
-          const parsed = JSON.parse(local);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            productsDatabase = parsed;
-          }
-        } catch(e) {}
-      }
-
-      // 2. Fetch live data/products.json from server
+      // 1. Fetch live data/products.json from server with cache: 'no-store'
       try {
-        const res = await fetch("data/products.json?v=" + Date.now());
+        const res = await fetch("data/products.json?v=" + Date.now(), { cache: "no-store" });
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data) && data.length > 0) {
             productsDatabase = data;
+            localStorage.setItem("sahila_custom_products", JSON.stringify(data));
           }
         }
-      } catch(err) {
+      } catch (err) {
         console.log("Using local/fallback catalog:", err);
+        // Fallback to local storage if offline
+        const local = localStorage.getItem("sahila_custom_products");
+        if (local) {
+          try {
+            const parsed = JSON.parse(local);
+            if (Array.isArray(parsed) && parsed.length > 0) {
+              productsDatabase = parsed;
+            }
+          } catch(e) {}
+        }
       }
 
+      updateChipCounters();
       renderCatalog("all");
     }
 
