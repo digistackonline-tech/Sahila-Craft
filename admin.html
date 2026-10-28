@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Admin Panel - Sahila Craft</title>
+  <meta name="theme-color" content="#3D291D">
+  <link rel="icon" type="image/jpeg" href="assets/logos/logo.jpg">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --terracotta: #BA6448;
+      --terracotta-dark: #984D34;
+      --terracotta-light: #F7EEE9;
+      --espresso: #3D291D;
+      --espresso-dark: #24160E;
+      --sand-bg: #F8F5F0;
+      --card-bg: #FFFFFF;
+      --border-color: #E6D8CC;
+      --gold-accent: #DDB288;
+      --text-main: #33241C;
+      --text-muted: #6E5E55;
+      --success: #27AE60;
+      --danger: #E74C3C;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 2px 8px rgba(61, 41, 29, 0.06);
+      --shadow-md: 0 8px 24px rgba(61, 41, 29, 0.09);
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--sand-bg);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 50px;
+    }
+
+    /* LOGIN SCREEN */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #F8F4EE 0%, #EFE5DA 100%);
+    }
+
+    .login-card {
+      background: #FFF;
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 20px 45px rgba(61, 41, 29, 0.12);
+      border: 1px solid var(--border-color);
+      text-align: center;
+    }
+
+    .login-logo {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 14px;
+      border: 2px solid var(--terracotta);
+      box-shadow: 0 4px 12px rgba(186, 100, 72, 0.25);
+    }
+
+    .login-card h2 {
+      font-family: 'Allura', cursive;
+      font-size: 2.8rem;
+      color: var(--espresso);
+      line-height: 0.9;
+      margin-bottom: 4px;
+    }
+
+    .login-card h2 span {
+      color: var(--terracotta);
+    }
+
+    .login-card p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--espresso);
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.9rem;
+      color: var(--text-main);
+      background: #FFF;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      box-shadow: 0 0 0 3px rgba(186, 100, 72, 0.15);
+    }
+
+    .btn-login {
+      width: 100%;
+      background: var(--terracotta);
+      color: #FFF;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 14px rgba(186, 100, 72, 0.3);
+    }
+
+    .btn-login:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+    }
+
+    .login-hint {
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--terracotta-light);
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+
+    /* MAIN ADMIN DASHBOARD */
+    .admin-app {
+      display: none;
+    }
+
+    .admin-header {
+      background: #FFF;
+      border-bottom: 1px solid var(--border-color);
+      padding: 14px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .admin-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .admin-brand h1 {
+      font-family: 'Allura', cursive;
+      font-size: 1.8rem;
+      color: var(--espresso);
+      line-height: 0.9;
+    }
+
+    .admin-brand h1 span {
+      color: var(--terracotta);
+    }
+
+    .admin-brand-tag {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .admin-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-header-action {
+      background: var(--sand-bg);
+      border: 1px solid var(--border-color);
+      color: var(--espresso);
+      padding: 7px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-header-action:hover {
+      background: var(--terracotta-light);
+      color: var(--terracotta);
+    }
+
+    .btn-logout {
+      background: #FDF0ED;
+      color: var(--danger);
+      border-color: #F8D7DA;
+    }
+
+    /* DASHBOARD CONTENT */
+    .dashboard-container {
+      max-width: 1100px;
+      margin: 20px auto 0;
+      padding: 0 16px;
+    }
+
+    /* TOP STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      background: #FFF;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--espresso);
+      line-height: 1;
+    }
+
+    /* ACTION BAR */
+    .action-bar {
+      background: #FFF;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .action-group-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--terracotta);
+      color: #FFF;
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(186, 100, 72, 0.25);
+      transition: var(--transition);
+    }
+
+    .btn-primary:hover {
+      background: var(--terracotta-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-publish {
+      background: var(--success);
+      color: #FFF;
+      border: none;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 3px 10px rgba(39, 174, 96, 0.25);
+      transition: var(--transition);
+    }
+
+    .btn-publish:hover {
+      background: #219653;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #FFF;
+      color: var(--espresso);
+      border: 1.5px solid var(--border-color);
+      padding: 9px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      background: var(--sand-bg);
+      border-color: var(--espresso);
+    }
+
+    /* SEARCH & FILTER BAR */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .search-input-box {
+      flex: 1;
+      min-width: 200px;
+      position: relative;
+    }
+
+    .search-input-box input {
+      width: 100%;
+      padding: 9px 12px 9px 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      background: #FFF;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pill-btn {
+      background: #FFF;
+      border: 1px solid var(--border-color);
+      color: var(--text-muted);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .pill-btn.active {
+      background: var(--espresso);
+      color: #FFF;
+      border-color: var(--espresso);
+    }
+
+    /* PRODUCT CARDS LIST */
+    .products-list-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .admin-product-card {
+      background: #FFF;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    .admin-product-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-3px);
+    }
+
+    .card-thumb-wrap {
+      position: relative;
+      background: #F4EFEA;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+    }
+
+    .card-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-cat-tag {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(43, 28, 19, 0.85);
+      color: #FFF;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 4px;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-body {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--espresso);
+      margin-bottom: 4px;
+      line-height: 1.3;
+    }
+
+    .card-meta-line {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .card-price-row {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-color);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .card-price {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--terracotta);
+    }
+
+    .card-dp {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #1F924D;
+      background: #EBF8EE;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .card-btn-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .btn-card-edit {
+      background: var(--terracotta-light);
+      color: var(--terracotta-dark);
+      border: 1px solid rgba(186, 100, 72, 0.3);
+      padding: 7px;
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .btn-card-edit:hover {
+      background: var(--terracotta);
+      color: #FFF;
+    }
+
+    .btn-card-del {
+      background: #FDF0ED;
+      color: var(--danger);
+      border: 1px solid #F8D7DA;
+      padding: 7px;
+      border-radius: var(--radius-sm);
+      font-size: 0.76rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      transition: var(--transition);
+    }
+
+    .btn-card-del:hover {
+      background: var(--danger);
+      color: #FFF;
+    }
+
+    /* MODAL FORM TAMBAH / EDIT */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 28, 19, 0.65);
+      backdrop-filter: blur(5px);
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #FFF;
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 540px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+      position: relative;
+      animation: modalPop 0.25s ease;
+    }
+
+    @keyframes modalPop {
+      from { transform: scale(0.95); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 20px 22px 14px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #FFF;
+      z-index: 10;
+    }
+
+    .modal-header h3 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.5rem;
+      color: var(--espresso);
+    }
+
+    .modal-close-btn {
+      background: var(--sand-bg);
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--espresso);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 20px 22px;
+    }
+
+    /* IMAGE UPLOADER PREVIEW */
+    .image-upload-box {
+      border: 2px dashed var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      background: var(--sand-bg);
+      margin-bottom: 16px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .image-upload-box:hover {
+      border-color: var(--terracotta);
+    }
+
+    .preview-img-container {
+      max-width: 220px;
+      aspect-ratio: 1/1;
+      margin: 0 auto 10px;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      display: none;
+      border: 1px solid var(--border-color);
+    }
+
+    .preview-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .upload-hint-icon {
+      font-size: 2.2rem;
+      color: var(--terracotta);
+      margin-bottom: 4px;
+    }
+
+    .upload-text {
+      font-size: 0.82rem;
+      color: var(--espresso);
+      font-weight: 600;
+    }
+
+    .upload-sub {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .file-input-hidden {
+      display: none;
+    }
+
+    .two-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* SETTINGS MODAL */
+    .settings-info-box {
+      background: var(--sand-bg);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* TOAST ALERT */
+    .toast-alert {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(60px);
+      background: var(--espresso-dark);
+      color: #FFF;
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      z-index: 5000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-alert.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* LOADING SPINNER OVERLAY */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(43, 28, 19, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 4000;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .loading-overlay.active {
+      display: flex;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top-color: var(--gold-accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 14px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 600px) {
+      .two-cols {
+        grid-template-columns: 1fr;
+      }
+      .action-bar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .action-group-left {
+        flex-direction: column;
+      }
+      .btn-primary, .btn-publish {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN CONTAINER -->
+  <div class="login-container" id="loginScreen">
+    <div class="login-card">
+      <img src="assets/logos/logo.jpg" alt="Sahila Craft" class="login-logo">
+      <h2>Sahila <span>Craft</span></h2>
+      <p>Panel Manajemen Galeri Produk &amp; Harga</p>
+
+      <form id="loginForm" onsubmit="handleLogin(event)">
+        <div class="form-group">
+          <label for="adminPin">Masukkan PIN / Sandi Admin:</label>
+          <input type="password" id="adminPin" class="form-control" placeholder="Default PIN: sahila123" required autofocus>
+        </div>
+
+        <button type="submit" class="btn-login">Masuk ke Panel Admin ➔</button>
+      </form>
+
+      <div class="login-hint">
+        🔒 PIN Bawaan: <strong>sahila123</strong><br>
+        <em>(PIN bisa diubah setelah Anda login)</em>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN ADMIN DASHBOARD -->
+  <div class="admin-app" id="adminApp">
+    <!-- Header -->
+    <header class="admin-header">
+      <div class="admin-brand">
+        <img src="assets/logos/logo.jpg" alt="Sahila Craft">
+        <div>
+          <h1>Sahila <span>Craft</span></h1>
+          <div class="admin-brand-tag">Admin Gallery Manager</div>
+        </div>
+      </div>
+
+      <div class="admin-header-actions">
+        <a href="index.html" target="_blank" class="btn-header-action" title="Lihat Website Live">
+          👁️ <span style="display:none; @media(min-width:600px){display:inline;}">Lihat Web</span>
+        </a>
+        <button class="btn-header-action" onclick="openSettingsModal()" title="Pengaturan">
+          ⚙️
+        </button>
+        <button class="btn-header-action btn-logout" onclick="handleLogout()" title="Keluar">
+          🚪 Keluar
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="dashboard-container">
+
+      <!-- Stats Bar -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-label">Total Produk</div>
+          <div class="stat-value" id="statTotal">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Tas Rajut</div>
+          <div class="stat-value" id="statTas">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Dompet &amp; Pouch</div>
+          <div class="stat-value" id="statDompet">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Status Sinkronisasi</div>
+          <div class="stat-value" style="font-size: 1.05rem; color: var(--success); display:flex; align-items:center; gap:6px;">
+            <span style="font-size:1.3rem;">●</span> <span id="syncStatusText">Tersimpan</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Bar -->
+      <div class="action-bar">
+        <div class="action-group-left">
+          <button class="btn-primary" onclick="openProductModal()">
+            ➕ Tambah Produk Baru
+          </button>
+          <button class="btn-publish" onclick="publishToWebsite()">
+            🚀 Publikasikan ke Website
+          </button>
+        </div>
+
+        <div>
+          <button class="btn-secondary" onclick="exportDataJSON()">
+            💾 Cadangkan (Download JSON)
+          </button>
+        </div>
+      </div>
+
+      <!-- Search & Filter Bar -->
+      <div class="filter-bar">
+        <div class="search-input-box">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari nama produk, motif, atau ukuran..." oninput="handleSearch()">
+        </div>
+
+        <div class="filter-pills">
+          <button class="pill-btn active" onclick="setFilter('all', this)">Semua (<span id="countAll">0</span>)</button>
+          <button class="pill-btn" onclick="setFilter('tas', this)">Tas (<span id="countTas">0</span>)</button>
+          <button class="pill-btn" onclick="setFilter('dompet', this)">Dompet (<span id="countDompet">0</span>)</button>
+        </div>
+      </div>
+
+      <!-- Products Grid -->
+      <div class="products-list-grid" id="adminProductsContainer">
+        <!-- Injected by JavaScript -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- MODAL FORM PRODUK (TAMBAH / EDIT) -->
+  <div class="modal-overlay" id="productModal" onclick="closeModalOnOverlay(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modalFormTitle">Tambah Produk Baru</h3>
+        <button class="modal-close-btn" onclick="closeProductModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <form id="productForm" onsubmit="saveProduct(event)">
+          <input type="hidden" id="editProductId">
+
+          <!-- Image Uploader -->
+          <div class="image-upload-box" onclick="triggerFileInput()">
+            <div class="preview-img-container" id="previewContainer">
+              <img id="imagePreview" src="" alt="Pratinjau Foto">
+            </div>
+
+            <div id="uploadPrompt">
+              <div class="upload-hint-icon">📷</div>
+              <div class="upload-text">Klik untuk Pilih Foto dari Galeri / Kamera</div>
+              <div class="upload-sub">Format JPG/PNG (Otomatis dikompres &amp; dioptimasi)</div>
+            </div>
+
+            <input type="file" id="productFileInput" class="file-input-hidden" accept="image/*" onchange="handleImageUpload(event)">
+          </div>
+
+          <!-- Title -->
+          <div class="form-group">
+            <label for="prodTitle">Nama Produk:*</label>
+            <input type="text" id="prodTitle" class="form-control" placeholder="Contoh: Tas Rajut Tote Motif Sisik" required>
+          </div>
+
+          <!-- Category & Motif -->
+          <div class="two-cols">
+            <div class="form-group">
+              <label for="prodCategory">Kategori Produk:*</label>
+              <select id="prodCategory" class="form-control" required onchange="handleCategoryChange()">
+                <option value="tas">👜 Tas Rajut</option>
+                <option value="dompet">👝 Dompet &amp; Pouch</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="prodMotif">Motif Rajutan:*</label>
+              <input type="text" id="prodMotif" class="form-control" placeholder="Contoh: Crocodile Stitch" required>
+            </div>
+          </div>
+
+          <!-- Size & Price -->
+          <div class="two-cols">
+            <div class="form-group">
+              <label for="prodSize">Dimensi Ukuran:*</label>
+              <input type="text" id="prodSize" class="form-control" placeholder="Contoh: 30 x 25 x 10 cm" required>
+            </div>
+
+            <div class="form-group">
+              <label for="prodPrice">Harga Produk (Rp):*</label>
+              <input type="number" id="prodPrice" class="form-control" placeholder="Contoh: 100000" min="1000" step="1000" required oninput="calculateDP()">
+            </div>
+          </div>
+
+          <!-- DP 50% Display -->
+          <div style="background:#EBF8EE; border:1px solid #C3E6CB; color:#155724; padding:8px 12px; border-radius:6px; font-size:0.8rem; margin-bottom:16px;">
+            💰 <strong>Nilai DP 50%:</strong> <span id="dpCalculated">Rp 0</span> <em>(Otomatis dihitung separuh dari harga)</em>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="prodDesc">Deskripsi Lengkap Produk:*</label>
+            <textarea id="prodDesc" class="form-control" rows="3" placeholder="Tuliskan keunggulan produk, warna, tali, bahan, dll..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%; padding:12px; font-size:0.95rem; justify-content:center;">
+            💾 Simpan Produk ke Daftar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SETTINGS -->
+  <div class="modal-overlay" id="settingsModal" onclick="closeSettingsOnOverlay(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3>Pengaturan &amp; Akun Admin</h3>
+        <button class="modal-close-btn" onclick="closeSettingsModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+        <form onsubmit="saveSettings(event)">
+          <div class="form-group">
+            <label for="newPin">Ubah PIN Admin:</label>
+            <input type="password" id="newPin" class="form-control" placeholder="Masukkan PIN baru">
+          </div>
+
+          <div class="settings-info-box">
+            <strong>Koneksi GitHub Cloudflare:</strong><br>
+            • Repositori: <code>digistackonline-tech/Sahila-Craft</code><br>
+            • Cabang (Branch): <code>main</code><br>
+            • Setiap kali Anda klik <strong>"Publikasikan ke Website"</strong>, perubahan data galeri otomatis dikirim ke GitHub dan Cloudflare Pages akan menayangkan versi terbaru dalam 30–60 detik.
+          </div>
+
+          <div class="form-group">
+            <label for="customToken">GitHub Personal Access Token (Opsional):</label>
+            <input type="password" id="customToken" class="form-control" placeholder="Biarkan kosong untuk gunakan token default">
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%; padding:11px; justify-content:center; margin-bottom:14px;">
+            Simpan Pengaturan
+          </button>
+        </form>
+
+        <hr style="border:none; border-top:1px solid var(--border-color); margin:18px 0;">
+
+        <div style="text-align:center;">
+          <button class="btn-secondary" onclick="resetToInitialCatalog()" style="color:var(--danger); border-color:#F8D7DA;">
+            ⚠️ Reset ke 10 Produk Awal Sahila Craft
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner"></div>
+    <h3 id="loadingTitle" style="font-size:1.15rem; margin-bottom:6px;">Menghubungkan ke GitHub...</h3>
+    <p id="loadingText" style="font-size:0.84rem; color:#DCCEC4; max-width:320px;">Mohon tunggu sebentar, sedang memperbarui data produk ke website live.</p>
+  </div>
+
+  <!-- TOAST ALERT -->
+  <div class="toast-alert" id="toastAlert">
+    <span id="toastIcon">✓</span>
+    <span id="toastMsg">Pesan notifikasi</span>
+  </div>
+
+  <script>
+    // DEFAULT CONFIGURATION
+    const DEFAULT_PIN = "sahila123";
+    const GITHUB_REPO = "digistackonline-tech/Sahila-Craft";
+    const GITHUB_BRANCH = "main";
+    // Token is stored securely in admin browser LocalStorage
+    const GITHUB_TOKEN_DEFAULT = "";
+
+    let currentProducts = [];
+    let currentFilter = "all";
+    let activeImageBase64 = null;
+
+    // INITIAL 10 PRODUCTS (FALLBACK DATABASE)
+    const INITIAL_PRODUCTS = [
+      {
+        id: 1,
+        title: "Dompet Rajut Motif Crocodile",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Crocodile / Sisik Buaya",
+        size: "12 x 8 x 3 cm (Resleting 12 cm)",
+        price: 60000,
+        image: "assets/products/dompet-crocodile-sisik.jpg",
+        desc: "Dompet rajut motif sisik buaya bernuansa cokelat karamel dengan aksen baris krem. Dilengkapi tali pegangan tangan (wristlet strap) dan resleting logam halus."
+      },
+      {
+        id: 2,
+        title: "Dompet Rajut Motif Prada Hijau",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Prada Stitch",
+        size: "12 x 3 x 8 cm (Resleting 12 cm)",
+        price: 60000,
+        image: "assets/products/dompet-prada-hijau.jpg",
+        desc: "Pouch rajut motif Prada dalam balutan warna hijau sage / olive yang estetik dan segar, dilengkapi label kulit handmade mewah."
+      },
+      {
+        id: 3,
+        title: "Tas Rajut Tote Motif Crocodile",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Crocodile Stitch 2 Tingkat",
+        size: "30 x 25 x 10 cm",
+        price: 400000,
+        image: "assets/products/tas-tote-crocodile.jpg",
+        desc: "Tas jinjing rajut berkapasitas lega dengan gradasi warna cokelat tua dan mocca, ring emas kuat, dan tali handle tebal anti-melar."
+      },
+      {
+        id: 4,
+        title: "Dompet Rajut Motif Bunga Tanjung",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Bunga Tanjung Maroon",
+        size: "20 x 10 x 4 cm",
+        price: 100000,
+        image: "assets/products/dompet-bunga-tanjung.jpg",
+        desc: "Dompet rajut panjang warna merah marun anggun dengan hiasan rajutan bunga tanjung putih krem di bagian tengah."
+      },
+      {
+        id: 5,
+        title: "Dompet Rajut Motif Bunga Terracotta",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Bunga Popcorn Timbul",
+        size: "17 x 4 x 11 cm",
+        price: 100000,
+        image: "assets/products/dompet-motif-bunga.jpg",
+        desc: "Pouch rajut warna terracotta hangat dengan bintik motif bunga rajut krem yang manis, dilengkapi ring resleting perak."
+      },
+      {
+        id: 6,
+        title: "Tas Selempang Kotak 3 Dimensi",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Kotak 3D Waffle / Bubble",
+        size: "25 x 8 x 18 cm",
+        price: 280000,
+        image: "assets/products/tas-selempang-kotak-3d.jpg",
+        desc: "Tas rajut selempang warna hitam pekat bergaya modern dengan rajutan timbul kotak 3 dimensi dan aksen kaitan rantai emas."
+      },
+      {
+        id: 7,
+        title: "Dompet Rajut Motif Kipas Mini",
+        category: "dompet",
+        categoryLabel: "Dompet Rajut",
+        motif: "Kipas Shell Stitch",
+        size: "10 x 3 x 8 cm",
+        price: 50000,
+        image: "assets/products/dompet-motif-kipas.jpg",
+        desc: "Pouch rajut mungil motif kipas paduan merah marun dan krem natural. Sangat praktis untuk koin, kartu, dan lipstik."
+      },
+      {
+        id: 8,
+        title: "Tas Rajut HP Motif Bunga Lilac",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Bunga Timbul Pastel",
+        size: "19 x 7 x 4 cm",
+        price: 250000,
+        image: "assets/products/tas-hp-motif-bunga.jpg",
+        desc: "Tas sling bag khusus smartphone warna lilac ungu pastel yang feminin dengan motif bintik bunga krem dan tali selempang nyaman."
+      },
+      {
+        id: 9,
+        title: "Tas Ransel Rajut Motif Pita Mewah",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Pita Raksasa & Kristal",
+        size: "26 x 10 x 40 cm",
+        price: 950000,
+        image: "assets/products/tas-ransel-motif-pita.jpg",
+        desc: "Ransel rajut istimewa warna cokelat kopi dengan ornamen pita rajut jingga tembaga bertabur kristal permata berkilau."
+      },
+      {
+        id: 10,
+        title: "Tas Rajut Jinjing Klasik (Tote)",
+        category: "tas",
+        categoryLabel: "Tas Rajut",
+        motif: "Garis Jalur Vertikal",
+        size: "35 x 20 x 10 cm",
+        price: 450000,
+        image: "assets/products/tas-jinjing-tote-beige.jpg",
+        desc: "Tote bag rajut klasik berwarna krem beige natural dengan tekstur jalur vertikal berkapasitas sangat luas dan kuat."
+      }
+    ];
+
+    function toRupiah(num) {
+      return "Rp " + Number(num || 0).toLocaleString("id-ID");
+    }
+
+    function getSavedPin() {
+      return localStorage.getItem("sahila_admin_pin") || DEFAULT_PIN;
+    }
+
+    function getGitHubToken() {
+      return localStorage.getItem("sahila_gh_token") || GITHUB_TOKEN_DEFAULT;
+    }
+
+    // AUTH / LOGIN
+    function handleLogin(e) {
+      e.preventDefault();
+      const enteredPin = document.getElementById("adminPin").value.trim();
+      if (enteredPin === getSavedPin()) {
+        sessionStorage.setItem("sahila_auth", "true");
+        showApp();
+        showToast("✓ Login Berhasil! Selamat datang di Panel Admin.");
+      } else {
+        alert("PIN salah! Silakan coba lagi (PIN bawaan: sahila123).");
+      }
+    }
+
+    function handleLogout() {
+      if (confirm("Apakah Anda yakin ingin keluar dari Panel Admin?")) {
+        sessionStorage.removeItem("sahila_auth");
+        location.reload();
+      }
+    }
+
+    function checkAuth() {
+      if (sessionStorage.getItem("sahila_auth") === "true") {
+        showApp();
+      }
+    }
+
+    function showApp() {
+      document.getElementById("loginScreen").style.display = "none";
+      document.getElementById("adminApp").style.display = "block";
+      loadCatalogData();
+    }
+
+    // LOAD DATA
+    async function loadCatalogData() {
+      // 1. Check LocalStorage first (for instant draft edits)
+      const local = localStorage.getItem("sahila_custom_products");
+      if (local) {
+        try {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            currentProducts = parsed;
+            renderAdminGrid();
+            updateStats();
+            return;
+          }
+        } catch(e) {}
+      }
+
+      // 2. Fetch data/products.json from server
+      try {
+        const res = await fetch("data/products.json?v=" + Date.now());
+        if (res.ok) {
+          const remoteData = await res.json();
+          if (Array.isArray(remoteData) && remoteData.length > 0) {
+            currentProducts = remoteData;
+            localStorage.setItem("sahila_custom_products", JSON.stringify(currentProducts));
+            renderAdminGrid();
+            updateStats();
+            return;
+          }
+        }
+      } catch(err) {
+        console.warn("Could not fetch remote products.json, using fallback.");
+      }
+
+      // 3. Fallback
+      currentProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
+      localStorage.setItem("sahila_custom_products", JSON.stringify(currentProducts));
+      renderAdminGrid();
+      updateStats();
+    }
+
+    function updateStats() {
+      const total = currentProducts.length;
+      const tas = currentProducts.filter(p => p.category === "tas").length;
+      const dompet = currentProducts.filter(p => p.category === "dompet").length;
+
+      document.getElementById("statTotal").textContent = total;
+      document.getElementById("statTas").textContent = tas;
+      document.getElementById("statDompet").textContent = dompet;
+
+      document.getElementById("countAll").textContent = total;
+      document.getElementById("countTas").textContent = tas;
+      document.getElementById("countDompet").textContent = dompet;
+    }
+
+    // RENDER PRODUCT CARDS
+    function renderAdminGrid(filter = currentFilter, searchQuery = "") {
+      const container = document.getElementById("adminProductsContainer");
+      container.innerHTML = "";
+
+      let items = filter === "all" 
+        ? currentProducts 
+        : currentProducts.filter(p => p.category === filter);
+
+      if (searchQuery.trim() !== "") {
+        const q = searchQuery.toLowerCase();
+        items = items.filter(p => 
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.motif && p.motif.toLowerCase().includes(q)) ||
+          (p.size && p.size.toLowerCase().includes(q))
+        );
+      }
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align:center; padding: 40px 20px; background:#FFF; border-radius:14px; border:1px dashed var(--border-color);">
+            <div style="font-size:2.5rem; margin-bottom:8px;">🧶</div>
+            <h4 style="color:var(--espresso); margin-bottom:4px;">Belum ada produk yang cocok</h4>
+            <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:14px;">Silakan tambah produk baru atau reset kata kunci pencarian.</p>
+            <button class="btn-primary" onclick="openProductModal()">➕ Tambah Produk Sekarang</button>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach((p, idx) => {
+        const dp = p.price * 0.5;
+        const card = document.createElement("div");
+        card.className = "admin-product-card";
+        card.innerHTML = `
+          <div class="card-thumb-wrap">
+            <img src="${p.image}" alt="${p.title}" onerror="this.src='assets/logos/logo.jpg'">
+            <span class="card-cat-tag">${p.categoryLabel || (p.category === 'tas' ? 'Tas Rajut' : 'Dompet Rajut')}</span>
+          </div>
+
+          <div class="card-body">
+            <h4 class="card-title">${p.title}</h4>
+            <div class="card-meta-line">
+              📐 <strong>${p.size || '-'}</strong> • <em>${p.motif || '-'}</em>
+            </div>
+
+            <p style="font-size:0.78rem; color:var(--text-muted); margin-bottom:10px; line-height:1.4; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+              ${p.desc || ''}
+            </p>
+
+            <div class="card-price-row">
+              <div class="card-price">${toRupiah(p.price)}</div>
+              <div class="card-dp">DP: ${toRupiah(dp)}</div>
+            </div>
+
+            <div class="card-btn-group">
+              <button class="btn-card-edit" onclick="editProduct(${p.id})">
+                ✏️ Edit
+              </button>
+              <button class="btn-card-del" onclick="deleteProduct(${p.id})">
+                🗑️ Hapus
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // SEARCH & FILTER
+    function setFilter(cat, btn) {
+      currentFilter = cat;
+      document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      handleSearch();
+    }
+
+    function handleSearch() {
+      const q = document.getElementById("searchInput").value;
+      renderAdminGrid(currentFilter, q);
+    }
+
+    // IMAGE UPLOAD & CANVAS COMPRESSION
+    function triggerFileInput() {
+      document.getElementById("productFileInput").click();
+    }
+
+    function handleImageUpload(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const img = new Image();
+        img.onload = function() {
+          // Auto-resize to maximum 1000px width/height to ensure lightweight files
+          const maxDim = 1000;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0, w, h);
+
+          // Convert to high-quality compressed JPEG (0.86 quality)
+          activeImageBase64 = canvas.toDataURL("image/jpeg", 0.86);
+
+          // Update preview
+          document.getElementById("imagePreview").src = activeImageBase64;
+          document.getElementById("previewContainer").style.display = "block";
+          document.getElementById("uploadPrompt").style.display = "none";
+        };
+        img.src = evt.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // MODAL ADD / EDIT
+    function openProductModal() {
+      document.getElementById("modalFormTitle").textContent = "Tambah Produk Baru";
+      document.getElementById("productForm").reset();
+      document.getElementById("editProductId").value = "";
+      activeImageBase64 = null;
+      document.getElementById("imagePreview").src = "";
+      document.getElementById("previewContainer").style.display = "none";
+      document.getElementById("uploadPrompt").style.display = "block";
+      document.getElementById("dpCalculated").textContent = "Rp 0";
+      document.getElementById("productModal").classList.add("active");
+    }
+
+    function editProduct(id) {
+      const p = currentProducts.find(item => item.id === id);
+      if (!p) return;
+
+      document.getElementById("modalFormTitle").textContent = "Edit Produk";
+      document.getElementById("editProductId").value = p.id;
+      document.getElementById("prodTitle").value = p.title;
+      document.getElementById("prodCategory").value = p.category;
+      document.getElementById("prodMotif").value = p.motif;
+      document.getElementById("prodSize").value = p.size;
+      document.getElementById("prodPrice").value = p.price;
+      document.getElementById("prodDesc").value = p.desc;
+      calculateDP();
+
+      activeImageBase64 = p.image;
+      document.getElementById("imagePreview").src = p.image;
+      document.getElementById("previewContainer").style.display = "block";
+      document.getElementById("uploadPrompt").style.display = "none";
+
+      document.getElementById("productModal").classList.add("active");
+    }
+
+    function closeProductModal() {
+      document.getElementById("productModal").classList.remove("active");
+    }
+
+    function closeModalOnOverlay(e) {
+      if (e.target.id === "productModal") {
+        closeProductModal();
+      }
+    }
+
+    function calculateDP() {
+      const price = Number(document.getElementById("prodPrice").value || 0);
+      document.getElementById("dpCalculated").textContent = toRupiah(price * 0.5);
+    }
+
+    function handleCategoryChange() {
+      // optional hook
+    }
+
+    // SAVE PRODUCT TO LOCAL STATE
+    function saveProduct(e) {
+      e.preventDefault();
+      const editId = document.getElementById("editProductId").value;
+      const title = document.getElementById("prodTitle").value.trim();
+      const category = document.getElementById("prodCategory").value;
+      const categoryLabel = category === "tas" ? "Tas Rajut" : "Dompet Rajut";
+      const motif = document.getElementById("prodMotif").value.trim();
+      const size = document.getElementById("prodSize").value.trim();
+      const price = Number(document.getElementById("prodPrice").value);
+      const desc = document.getElementById("prodDesc").value.trim();
+
+      const imageSrc = activeImageBase64 || "assets/logos/logo.jpg";
+
+      if (editId) {
+        // Edit existing
+        const idx = currentProducts.findIndex(p => p.id == editId);
+        if (idx !== -1) {
+          currentProducts[idx] = {
+            ...currentProducts[idx],
+            title,
+            category,
+            categoryLabel,
+            motif,
+            size,
+            price,
+            desc,
+            image: imageSrc
+          };
+          showToast("✓ Produk '" + title + "' berhasil diperbarui!");
+        }
+      } else {
+        // Add new
+        const newId = currentProducts.length > 0 
+          ? Math.max(...currentProducts.map(p => p.id || 0)) + 1 
+          : 1;
+
+        currentProducts.unshift({
+          id: newId,
+          title,
+          category,
+          categoryLabel,
+          motif,
+          size,
+          price,
+          desc,
+          image: imageSrc
+        });
+        showToast("✓ Produk baru '" + title + "' berhasil ditambahkan!");
+      }
+
+      // Persist in LocalStorage
+      localStorage.setItem("sahila_custom_products", JSON.stringify(currentProducts));
+      updateStats();
+      renderAdminGrid();
+      closeProductModal();
+
+      document.getElementById("syncStatusText").textContent = "Ada Perubahan (Belum Terbit)";
+      document.getElementById("syncStatusText").style.color = "var(--terracotta)";
+    }
+
+    // DELETE PRODUCT
+    function deleteProduct(id) {
+      const p = currentProducts.find(item => item.id === id);
+      if (!p) return;
+
+      if (confirm(`Apakah Anda yakin ingin menghapus produk:\n"${p.title}"?`)) {
+        currentProducts = currentProducts.filter(item => item.id !== id);
+        localStorage.setItem("sahila_custom_products", JSON.stringify(currentProducts));
+        updateStats();
+        renderAdminGrid();
+        showToast("✓ Produk '" + p.title + "' berhasil dihapus.");
+        document.getElementById("syncStatusText").textContent = "Ada Perubahan (Belum Terbit)";
+        document.getElementById("syncStatusText").style.color = "var(--terracotta)";
+      }
+    }
+
+    // PUBLISH DIRECTLY TO GITHUB REPO VIA REST API
+    async function publishToWebsite() {
+      const token = getGitHubToken();
+      if (!token) {
+        alert("GitHub Token belum diatur! Silakan atur di menu Pengaturan (⚙️).");
+        openSettingsModal();
+        return;
+      }
+
+      showLoading(true, "Menyimpan ke GitHub...", "Sedang mengunggah berkas data produk ke repositori Sahila-Craft.");
+
+      try {
+        const fileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/products.json`;
+
+        // 1. Get current SHA of data/products.json
+        let sha = null;
+        try {
+          const checkResp = await fetch(fileUrl, {
+            headers: {
+              "Authorization": `Bearer ${token}`,
+              "Accept": "application/vnd.github.v3+json"
+            }
+          });
+          if (checkResp.ok) {
+            const fileData = await checkResp.json();
+            sha = fileData.sha;
+          }
+        } catch(err) {
+          console.warn("Could not check SHA, creating new file if needed.");
+        }
+
+        // 2. Prepare JSON content
+        const jsonString = JSON.stringify(currentProducts, null, 2);
+        // Base64 encode supporting UTF-8
+        const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+        // 3. Commit to GitHub
+        const commitPayload = {
+          message: `chore(catalog): update products via Sahila Craft Admin (${currentProducts.length} items)`,
+          content: base64Content,
+          branch: GITHUB_BRANCH
+        };
+        if (sha) {
+          commitPayload.sha = sha;
+        }
+
+        const putResp = await fetch(fileUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+          },
+          body: JSON.stringify(commitPayload)
+        });
+
+        if (!putResp.ok) {
+          const errorJson = await putResp.json();
+          throw new Error(errorJson.message || "Gagal menyimpan ke GitHub.");
+        }
+
+        showLoading(false);
+        document.getElementById("syncStatusText").textContent = "Tersimpan di Website";
+        document.getElementById("syncStatusText").style.color = "var(--success)";
+
+        showToast("🎉 BERHASIL! Website sedang diperbarui oleh Cloudflare (~30-60 detik).");
+        alert("✓ Berhasil Dipublikasikan!\n\nSeluruh perubahan foto, harga, dan deskripsi produk telah tersimpan ke GitHub.\nCloudflare otomatis menayangkan pembaruan ke sahilacraft.online dalam 30-60 detik.");
+      } catch (err) {
+        showLoading(false);
+        alert("Terjadi kendala saat menyimpan ke GitHub:\n" + err.message + "\n\nTips: Perubahan tetap tersimpan di browser Anda saat ini.");
+      }
+    }
+
+    // EXPORT JSON BACKUP
+    function exportDataJSON() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentProducts, null, 2));
+      const downloadAnchor = document.createElement("a");
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", `sahila-craft-katalog-${new Date().toISOString().slice(0,10)}.json`);
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      downloadAnchor.remove();
+      showToast("✓ File cadangan JSON berhasil diunduh.");
+    }
+
+    // RESET TO INITIAL 10 PRODUCTS
+    function resetToInitialCatalog() {
+      if (confirm("PERINGATAN:\nApakah Anda yakin ingin mereset seluruh daftar produk kembali ke 10 produk bawaan Sahila Craft?")) {
+        currentProducts = JSON.parse(JSON.stringify(INITIAL_PRODUCTS));
+        localStorage.setItem("sahila_custom_products", JSON.stringify(currentProducts));
+        updateStats();
+        renderAdminGrid();
+        closeSettingsModal();
+        showToast("✓ Katalog produk berhasil direset ke 10 produk awal.");
+      }
+    }
+
+    // SETTINGS MODAL
+    function openSettingsModal() {
+      document.getElementById("newPin").value = "";
+      document.getElementById("customToken").value = localStorage.getItem("sahila_gh_token") || "";
+      document.getElementById("settingsModal").classList.add("active");
+    }
+
+    function closeSettingsModal() {
+      document.getElementById("settingsModal").classList.remove("active");
+    }
+
+    function closeSettingsOnOverlay(e) {
+      if (e.target.id === "settingsModal") {
+        closeSettingsModal();
+      }
+    }
+
+    function saveSettings(e) {
+      e.preventDefault();
+      const newPin = document.getElementById("newPin").value.trim();
+      const customToken = document.getElementById("customToken").value.trim();
+
+      if (newPin) {
+        localStorage.setItem("sahila_admin_pin", newPin);
+      }
+      if (customToken) {
+        localStorage.setItem("sahila_gh_token", customToken);
+      } else {
+        localStorage.removeItem("sahila_gh_token");
+      }
+
+      closeSettingsModal();
+      showToast("✓ Pengaturan admin berhasil disimpan!");
+    }
+
+    // UTILITIES
+    function showLoading(show, title = "", text = "") {
+      const overlay = document.getElementById("loadingOverlay");
+      if (show) {
+        if (title) document.getElementById("loadingTitle").textContent = title;
+        if (text) document.getElementById("loadingText").textContent = text;
+        overlay.classList.add("active");
+      } else {
+        overlay.classList.remove("active");
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById("toastAlert");
+      document.getElementById("toastMsg").textContent = msg;
+      toast.classList.add("show");
+      setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3500);
+    }
+
+    // INIT CHECK
+    document.addEventListener("DOMContentLoaded", () => {
+      checkAuth();
+    });
+  </script>
+</body>
+</html>

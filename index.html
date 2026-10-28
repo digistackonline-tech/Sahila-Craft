@@ -1089,6 +1089,7 @@
         <li><a href="#alur-po">Sistem PO &amp; DP</a></li>
         <li><a href="#rekening">Rekening Bank</a></li>
         <li><a href="#tentang">Lokasi Galeri</a></li>
+        <li><a href="admin.html" style="font-size:0.75rem; color:var(--text-muted); opacity:0.75;" title="Panel Admin">🔒 Admin</a></li>
       </ul>
 
       <div class="header-actions">
@@ -1124,6 +1125,11 @@
         <li>
           <a href="https://wa.me/6285707787900?text=Halo%20Sahila%20Craft,%20saya%20mau%20konsultasi%20custom%20rajut" target="_blank" style="background:#EAF8EE; color:#1F924D;">
             💬 Hubungi WhatsApp Langsung
+          </a>
+        </li>
+        <li>
+          <a href="admin.html" style="font-size:0.82rem; color:var(--text-muted); opacity:0.85; padding-top:6px;">
+            🔒 Kelola Produk (Admin)
           </a>
         </li>
       </ul>
@@ -1328,7 +1334,7 @@
   <script>
     const WA_PHONE = "6285707787900";
 
-    const productsDatabase = [
+    let productsDatabase = [
       {
         id: 1,
         title: "Dompet Rajut Motif Crocodile",
@@ -1575,9 +1581,37 @@
       }, 3000);
     }
 
-    // Initialize
-    document.addEventListener("DOMContentLoaded", () => {
+    // Initialize & Dynamic Load
+    async function initCatalog() {
+      // 1. Check local draft
+      const local = localStorage.getItem("sahila_custom_products");
+      if (local) {
+        try {
+          const parsed = JSON.parse(local);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            productsDatabase = parsed;
+          }
+        } catch(e) {}
+      }
+
+      // 2. Fetch live data/products.json from server
+      try {
+        const res = await fetch("data/products.json?v=" + Date.now());
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            productsDatabase = data;
+          }
+        }
+      } catch(err) {
+        console.log("Using local/fallback catalog:", err);
+      }
+
       renderCatalog("all");
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initCatalog();
     });
   </script>
 </body>
