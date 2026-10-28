@@ -21,7 +21,7 @@ Website resmi dan galeri katalog kerajinan tangan **Sahila Craft** berpusat di P
 - **Bank Rekening**: Bank BRI `647401030008538` a.n. **MUJIDATUR ROHMAH**
 - **Syarat DP**: 50% (Separuh dari harga produk)
 - **Waktu Pengerjaan (PO)**: Maksimal 1 Bulan
-- **Lokasi Workshop**: Desa Jajar Lor, Kecamatan Gondang Wetan, Kabupaten Pasuruan, Jawa Timur
+- **Lokasi Workshop**: [Desa Jajar Lor, Kecamatan Gondang Wetan, Kabupaten Pasuruan, Jawa Timur (Buka Google Maps)](https://maps.app.goo.gl/FLzbV8G7PZHtRvzq5)
 
 ---
 
