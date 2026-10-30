@@ -1524,65 +1524,92 @@
       }
     }
 
-    // PUBLISH DIRECTLY TO GITHUB REPO VIA REST API
+    // PUBLISH DIRECTLY TO GITHUB REPO OR VIA CLOUDFLARE BACKEND
     async function publishToWebsite() {
       const token = getGitHubToken();
-      if (!token) {
-        alert("GitHub Token belum diatur! Silakan atur di menu Pengaturan (⚙️).");
-        openSettingsModal();
-        return;
-      }
+      const currentPin = getSavedPin();
 
-      showLoading(true, "Menyimpan ke GitHub...", "Sedang mengunggah berkas data produk ke repositori Sahila-Craft.");
+      showLoading(true, "Menyimpan ke Website...", "Sedang mengunggah perubahan data produk ke server live.");
 
       try {
-        const fileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/products.json`;
-
-        // 1. Get current SHA of data/products.json
-        let sha = null;
+        // Cara 1: Coba publikasi otomatis lewat Cloudflare API (/api/publish)
+        let publishedViaApi = false;
         try {
-          const checkResp = await fetch(fileUrl, {
+          const apiResp = await fetch("/api/publish", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              products: currentProducts,
+              pin: currentPin
+            })
+          });
+
+          if (apiResp.ok) {
+            const apiResult = await apiResp.json();
+            if (apiResult.success) {
+              publishedViaApi = true;
+            }
+          }
+        } catch (apiErr) {
+          console.log("Cloudflare API publish not yet ready, trying client token...", apiErr);
+        }
+
+        // Cara 2: Jika API belum ada/belum diatur tokennya di Cloudflare, gunakan token client jika tersedia
+        if (!publishedViaApi) {
+          if (!token) {
+            showLoading(false);
+            alert("Untuk pertama kali di perangkat ini, silakan masukkan GitHub Token di menu Pengaturan (⚙️) atau atur GITHUB_TOKEN di Cloudflare Environment Variables.");
+            openSettingsModal();
+            return;
+          }
+
+          const fileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/products.json`;
+
+          // 1. Get current SHA of data/products.json
+          let sha = null;
+          try {
+            const checkResp = await fetch(fileUrl, {
+              headers: {
+                "Authorization": `Bearer ${token}`,
+                "Accept": "application/vnd.github.v3+json"
+              }
+            });
+            if (checkResp.ok) {
+              const fileData = await checkResp.json();
+              sha = fileData.sha;
+            }
+          } catch(err) {
+            console.warn("Could not check SHA, creating new file if needed.");
+          }
+
+          // 2. Prepare JSON content
+          const jsonString = JSON.stringify(currentProducts, null, 2);
+          const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+          // 3. Commit to GitHub
+          const commitPayload = {
+            message: `chore(catalog): update products via Sahila Craft Admin (${currentProducts.length} items)`,
+            content: base64Content,
+            branch: GITHUB_BRANCH
+          };
+          if (sha) {
+            commitPayload.sha = sha;
+          }
+
+          const putResp = await fetch(fileUrl, {
+            method: "PUT",
             headers: {
               "Authorization": `Bearer ${token}`,
+              "Content-Type": "application/json",
               "Accept": "application/vnd.github.v3+json"
-            }
+            },
+            body: JSON.stringify(commitPayload)
           });
-          if (checkResp.ok) {
-            const fileData = await checkResp.json();
-            sha = fileData.sha;
+
+          if (!putResp.ok) {
+            const errorJson = await putResp.json();
+            throw new Error(errorJson.message || "Gagal menyimpan ke GitHub.");
           }
-        } catch(err) {
-          console.warn("Could not check SHA, creating new file if needed.");
-        }
-
-        // 2. Prepare JSON content
-        const jsonString = JSON.stringify(currentProducts, null, 2);
-        // Base64 encode supporting UTF-8
-        const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-
-        // 3. Commit to GitHub
-        const commitPayload = {
-          message: `chore(catalog): update products via Sahila Craft Admin (${currentProducts.length} items)`,
-          content: base64Content,
-          branch: GITHUB_BRANCH
-        };
-        if (sha) {
-          commitPayload.sha = sha;
-        }
-
-        const putResp = await fetch(fileUrl, {
-          method: "PUT",
-          headers: {
-            "Authorization": `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "Accept": "application/vnd.github.v3+json"
-          },
-          body: JSON.stringify(commitPayload)
-        });
-
-        if (!putResp.ok) {
-          const errorJson = await putResp.json();
-          throw new Error(errorJson.message || "Gagal menyimpan ke GitHub.");
         }
 
         showLoading(false);
@@ -1590,10 +1617,10 @@
         document.getElementById("syncStatusText").style.color = "var(--success)";
 
         showToast("🎉 BERHASIL! Website sedang diperbarui oleh Cloudflare (~30-60 detik).");
-        alert("✓ Berhasil Dipublikasikan!\n\nSeluruh perubahan foto, harga, dan deskripsi produk telah tersimpan ke GitHub.\nCloudflare otomatis menayangkan pembaruan ke sahilacraft.online dalam 30-60 detik.");
+        alert("✓ Berhasil Dipublikasikan!\n\nSeluruh perubahan foto, harga, dan deskripsi produk telah tersimpan ke server.\nCloudflare otomatis menayangkan pembaruan ke sahilacraft.online dalam 30-60 detik.");
       } catch (err) {
         showLoading(false);
-        alert("Terjadi kendala saat menyimpan ke GitHub:\n" + err.message + "\n\nTips: Perubahan tetap tersimpan di browser Anda saat ini.");
+        alert("Terjadi kendala saat menyimpan ke server:\n" + err.message + "\n\nTips: Perubahan tetap tersimpan di browser Anda saat ini.");
       }
     }
 
