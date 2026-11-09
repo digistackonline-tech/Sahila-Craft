@@ -1239,7 +1239,7 @@
         <span>REKENING RESMI</span>
       </div>
       <div class="rekening-num-mobile" id="rekNumText">647401030008538</div>
-      <div class="bank-name-holder">Atas Nama: <strong>MUJIDATUR ROHMAH</strong></div>
+      <div class="bank-name-holder">Atas Nama: <strong>MAJIDATUR ROHMAH</strong></div>
       <button class="btn-copy-mobile" onclick="copyRekening()">
         📋 Salin Nomor Rekening
       </button>
@@ -1495,7 +1495,7 @@
           `• Harga: ${toRupiah(p.price)}\n` +
           `• DP 50%: ${toRupiah(dp)}\n` +
           `• Sistem PO: Maksimal 1 Bulan\n\n` +
-          `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MUJIDATUR ROHMAH. Mohon diproses ya kak!`
+          `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MAJIDATUR ROHMAH. Mohon diproses ya kak!`
         );
 
         const card = document.createElement("div");
@@ -1557,7 +1557,7 @@
         `• Ukuran: ${p.size}\n` +
         `• Harga: ${toRupiah(p.price)} (DP: ${toRupiah(dp)})\n` +
         `• Waktu PO: Paling lama 1 bulan\n\n` +
-        `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MUJIDATUR ROHMAH. Mohon diproses ya kak!`
+        `Saya siap transfer DP 50% ke Rek BRI 647401030008538 a.n. MAJIDATUR ROHMAH. Mohon diproses ya kak!`
       );
       document.getElementById("sheetWaBtn").href = `https://wa.me/${WA_PHONE}?text=${waMsg}`;
 
@@ -1592,9 +1592,9 @@
     function copyRekening() {
       const rek = document.getElementById("rekNumText").innerText.trim();
       navigator.clipboard.writeText(rek).then(() => {
-        showToastNotice("✓ Rekening BRI a.n. MUJIDATUR ROHMAH berhasil disalin!");
+        showToastNotice("✓ Rekening BRI a.n. MAJIDATUR ROHMAH berhasil disalin!");
       }).catch(() => {
-        showToastNotice("Rek BRI: 647401030008538 a.n. MUJIDATUR ROHMAH");
+        showToastNotice("Rek BRI: 647401030008538 a.n. MAJIDATUR ROHMAH");
       });
     }
 
