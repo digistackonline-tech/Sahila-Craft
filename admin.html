@@ -1524,7 +1524,7 @@
       }
     }
 
-    // PUBLISH DIRECTLY TO GITHUB REPO OR VIA CLOUDFLARE BACKEND
+    // PUBLISH DIRECTLY TO GITHUB REPO
     async function publishToWebsite() {
       const token = getGitHubToken();
       const currentPin = getSavedPin();
@@ -1532,84 +1532,59 @@
       showLoading(true, "Menyimpan ke Website...", "Sedang mengunggah perubahan data produk ke server live.");
 
       try {
-        // Cara 1: Coba publikasi otomatis lewat Cloudflare API (/api/publish)
-        let publishedViaApi = false;
-        try {
-          const apiResp = await fetch("/api/publish", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              products: currentProducts,
-              pin: currentPin
-            })
-          });
-
-          if (apiResp.ok) {
-            const apiResult = await apiResp.json();
-            if (apiResult.success) {
-              publishedViaApi = true;
-            }
-          }
-        } catch (apiErr) {
-          console.log("Cloudflare API publish not yet ready, trying client token...", apiErr);
+        if (!token) {
+          showLoading(false);
+          alert("Silakan masukkan GitHub Token di menu Pengaturan (⚙️).");
+          openSettingsModal();
+          return;
         }
 
-        // Cara 2: Jika API belum ada/belum diatur tokennya di Cloudflare, gunakan token client jika tersedia
-        if (!publishedViaApi) {
-          if (!token) {
-            showLoading(false);
-            alert("Untuk pertama kali di perangkat ini, silakan masukkan GitHub Token di menu Pengaturan (⚙️) atau atur GITHUB_TOKEN di Cloudflare Environment Variables.");
-            openSettingsModal();
-            return;
-          }
+        const fileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/products.json`;
 
-          const fileUrl = `https://api.github.com/repos/${GITHUB_REPO}/contents/data/products.json`;
-
-          // 1. Get current SHA of data/products.json
-          let sha = null;
-          try {
-            const checkResp = await fetch(fileUrl, {
-              headers: {
-                "Authorization": `Bearer ${token}`,
-                "Accept": "application/vnd.github.v3+json"
-              }
-            });
-            if (checkResp.ok) {
-              const fileData = await checkResp.json();
-              sha = fileData.sha;
-            }
-          } catch(err) {
-            console.warn("Could not check SHA, creating new file if needed.");
-          }
-
-          // 2. Prepare JSON content
-          const jsonString = JSON.stringify(currentProducts, null, 2);
-          const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-
-          // 3. Commit to GitHub
-          const commitPayload = {
-            message: `chore(catalog): update products via Sahila Craft Admin (${currentProducts.length} items)`,
-            content: base64Content,
-            branch: GITHUB_BRANCH
-          };
-          if (sha) {
-            commitPayload.sha = sha;
-          }
-
-          const putResp = await fetch(fileUrl, {
-            method: "PUT",
+        // 1. Get current SHA of data/products.json
+        let sha = null;
+        try {
+          const checkResp = await fetch(fileUrl, {
             headers: {
               "Authorization": `Bearer ${token}`,
-              "Content-Type": "application/json",
               "Accept": "application/vnd.github.v3+json"
-            },
-            body: JSON.stringify(commitPayload)
+            }
           });
-
-          if (!putResp.ok) {
-            const errorJson = await putResp.json();
-            throw new Error(errorJson.message || "Gagal menyimpan ke GitHub.");
+          if (checkResp.ok) {
+            const fileData = await checkResp.json();
+            sha = fileData.sha;
           }
+        } catch(err) {
+          console.warn("Could not check SHA, creating new file if needed.");
+        }
+
+        // 2. Prepare JSON content
+        const jsonString = JSON.stringify(currentProducts, null, 2);
+        const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+        // 3. Commit to GitHub
+        const commitPayload = {
+          message: `chore(catalog): update products via Sahila Craft Admin (${currentProducts.length} items)`,
+          content: base64Content,
+          branch: GITHUB_BRANCH
+        };
+        if (sha) {
+          commitPayload.sha = sha;
+        }
+
+        const putResp = await fetch(fileUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Content-Type": "application/json",
+            "Accept": "application/vnd.github.v3+json"
+          },
+          body: JSON.stringify(commitPayload)
+        });
+
+        if (!putResp.ok) {
+          const errorJson = await putResp.json();
+          throw new Error(errorJson.message || "Gagal menyimpan ke GitHub.");
         }
 
         showLoading(false);
